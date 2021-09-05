@@ -1,7 +1,7 @@
 /**
  *
  * 2021. Pol Moneys
- * Flex 1.0.0
+ * Flex 1.1.0
  * Feedback at polmoneys on github
  *
  */
@@ -53,12 +53,12 @@ const Flex = (props: Props): JSX.Element => {
     const isGrid = is(variant, 'grid');
 
     const rootStyles = clxs(
-        'flex',
         className,
         isColToRow && styles.flexLandscape,
         isCol && styles.flexCol,
         isRow && styles.flexRow,
         isGrid && styles.flexWrap,
+        isGrid && styles.flexRow,
         show && is(show, 'portrait') && styles.portraitOnly,
         show && is(show, 'landscape') && styles.landscapeOnly,
         push && is(push, 'top') && styles.flexBottom,
