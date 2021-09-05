@@ -1,0 +1,27 @@
+.spinner {
+    display: flex;
+    border-radius: 50%;
+    animation: spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    pointer-events: none;
+    height: calc(var(--tappable-height) - 10px);
+    width: calc(var(--tappable-height) - 10px);
+}
+
+.icon {
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+@keyframes spinner {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}

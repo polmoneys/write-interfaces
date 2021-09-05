@@ -1,0 +1,55 @@
+.toggleWrapper {
+    width: 130px;
+}
+
+.toggle {
+    height: 65px;
+    width: 130px;
+    border-radius: 40px;
+    padding: 12px;
+    position: relative;
+    transition: background 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.toggle::before {
+    content: '';
+    display: block;
+    height: 41px;
+    width: 41px;
+    border-radius: 30px;
+    background: var(--gray-100);
+    position: absolute;
+    z-index: var(--above);
+    transform: translate(0);
+    transition: transform var(--animation-duration-default) ease-in-out, background var(--animation-duration-default) ease-in-out;
+}
+
+.toggle.isActive::before {
+    background: var(--error-200);
+}
+
+.toggle.enabled::before {
+    transform: translateX(65px);
+}
+
+.toggle input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+}
+
+.toggle .icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0 5px;
+}
+
+.toggle .icons svg {
+    fill: currentColor;
+    height: 30px;
+    width: 30px;
+    z-index: 0;
+}

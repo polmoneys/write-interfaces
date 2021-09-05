@@ -1,0 +1,55 @@
+/** Pill */
+
+.root {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--component-margin);
+    position: relative;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    width: fit-content;
+    /* border-radius: var(--tappable-radius-pill); */
+    transition: 0.25s ease;
+}
+
+.root::before {
+    display: flex;
+    flex-shrink: 0;
+    content: '';
+    background-color: #fff;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em var(--accent-200);
+}
+
+.root input {
+    opacity: 0;
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    left: 0.75em;
+    top: calc(0.375em + 2px);
+}
+
+.label {
+    text-transform: uppercase;
+    font-size: 90%;
+    margin-bottom: 0 !important;
+}
+
+.root:hover {
+    filter: none !important;
+}
+.root.focus,
+.root.checked,
+.root:hover {
+    background-color: var(--accent-000) !important;
+    color: var(--accent-200);
+}
+
+.root.checked::before {
+    box-shadow: inset 0 0 0 0.4375em var(--accent-200);
+}

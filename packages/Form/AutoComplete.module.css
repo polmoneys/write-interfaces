@@ -1,0 +1,101 @@
+.root {
+    position: relative;
+    flex: 1;
+    width: 100%;
+}
+.root [data-reach-combobox] {
+    width: 100%;
+    flex: 1;
+}
+.root [data-reach-combobox-input] {
+    width: 100%;
+    flex: 1;
+    box-shadow: var(--component-shadow);
+    background-color: var(--component-bg);
+    min-height: var(--tappable-height);
+    padding: var(--tappable-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: inherit;
+    border: var(--component-border-width) solid var(--component-border);
+}
+
+.root [data-reach-combobox-input]::-webkit-input-placeholder {
+    color: var(--gray-500);
+}
+.root [data-reach-combobox-input]::-ms-input-placeholder {
+    color: var(--gray-500);
+}
+
+.root [data-reach-combobox-input]:focus,
+.root [data-reach-combobox-input]:active {
+    outline: none !important;
+    outline: var(--tappable-focus-outline);
+    box-shadow: var(--tappable-focus-shadow);
+    border-radius: 0 !important;
+}
+
+.portal[data-reach-combobox-popover] {
+    position: absolute;
+    width: 100%;
+    border-top: none;
+    z-index: var(--float-z);
+}
+/* possible states: "idle" | "suggesting" | "navigating" | "interacting"  */
+/* [data-reach-combobox-popover][data-state="STATE_REF"] { } */
+
+.portal[data-reach-combobox-popover] {
+    transform: translateY(var(--tappable-popover-offset));
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    min-width: -moz-fit-content;
+    min-width: -webkit-min-content;
+    min-width: min-content;
+    background-color: var(--component-bg);
+    box-shadow: var(--component-shadow);
+    outline: none;
+    /*
+      top: calc(var(--tappable-height) + var(--tappable-popover-offset)) !important;
+    */
+}
+
+.portal[data-reach-combobox-option] {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    user-select: none;
+    cursor: pointer;
+    /* a/link */
+    color: currentColor;
+    font: inherit;
+    text-decoration: initial;
+    /* both */
+    min-height: var(--tappable-height);
+    min-width: 0;
+    padding: 0 var(--tappable-padding-min);
+    outline: none;
+    border: var(--component-border-width) solid var(--component-border);
+}
+.portal[data-reach-combobox-option]:not(:last-of-type) {
+    border-bottom: none !important;
+}
+
+.portal[data-reach-combobox-option]:not(:last-of-type) {
+    border-bottom: 1px solid var(--component-border);
+}
+
+.portal [data-user-value] {
+    font-weight: bolder;
+    color: var(--accent-200);
+}
+
+.portal [data-suggested-value] {
+    font-weight: normal;
+}
+
+.portal[data-reach-combobox-option] span {
+    display: flex;
+}

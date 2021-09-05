@@ -1,0 +1,27 @@
+.helveticaNeue {
+    font-family: 'Helvetica Neue LT Std', 'Helvetica', 'sans-serif';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.medium {
+    font-family: 'Helvetica Neue LT Std', 'Helvetica', 'sans-serif';
+    font-weight: 500;
+    font-style: normal;
+}
+.bold {
+    font-family: 'Helvetica Neue LT Std', 'Helvetica', 'sans-serif';
+    font-weight: 600;
+    font-style: bold;
+}
+
+.thin {
+    font-family: 'Helvetica Neue LT Std', 'Helvetica', 'sans-serif';
+    font-weight: 300;
+    font-style: normal;
+}
+
+.grotesk {
+    font-family: 'HKGrotesk Black';
+    font-weight: 600;
+}

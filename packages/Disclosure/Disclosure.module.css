@@ -1,0 +1,26 @@
+.root {
+    width: 100%;
+}
+
+.root [data-reach-disclosure-button] {
+    width: 100%;
+    min-height: var(--tappable-height);
+    padding: 0 var(--tappable-padding-max);
+    background-color: var(--component-bg-soft);
+    border: none !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.root [data-reach-disclosure-button][data-state='open'] svg {
+    transform: rotate(-90deg) !important;
+}
+
+.root [data-reach-disclosure-button] svg {
+    margin-left: 1em;
+}
+
+.root [data-reach-disclosure-panel] {
+    width: 100%;
+}

@@ -1,0 +1,83 @@
+.slotsContainer {
+    position: relative;
+}
+.slots {
+    width: 100%;
+    /* outline: 1px solid red; */
+}
+
+.slots button {
+    border: var(--component-border-width) solid currentColor !important;
+}
+.slots button:hover {
+    background-color: var(--gray-600);
+    color: var(--gray-100);
+    border-color: var(--gray-100) !important;
+}
+
+.iconCard {
+    width: 100%;
+    height: max(10vh, 190px);
+    display: flex;
+    background-color: var(--component-bg);
+    justify-content: center;
+    align-items: center;
+    border: var(--component-border-width) solid var(--component-border);
+    box-shadow: var(--component-shadow);
+}
+
+.flexPush {
+    width: min(600px, 80%);
+    background-color: var(--component-bg);
+    border: var(--component-border-width) solid var(--component-border);
+    padding: var(--component-padding);
+    box-shadow: var(--component-shadow);
+    margin-left: auto;
+    margin-right: auto;
+    min-height: min(20vh, 300px);
+    justify-content: center;
+    align-items: center;
+}
+
+.icoItem {
+    flex: 1;
+    min-height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--component-padding);
+    background-color: var(--component-bg);
+    box-shadow: var(--component-shadow);
+}
+
+@media (orientation: landscape) {
+    .icoItem {
+        border: var(--component-border-width) solid var(--component-border);
+    }
+    .icoItem:not(:last-of-type) {
+        border-right: none;
+    }
+}
+
+.flexGrid {
+    display: flex;
+    align-items: flex-start;
+    place-content: center;
+}
+.flexGrid > * {
+    flex: 1 1 calc(50% - 2em) !important;
+}
+
+@media (orientation: landscape) {
+    .flexGrid > * {
+        flex: 1 1 30% !important;
+    }
+}
+.sup {
+    vertical-align: top;
+    font-size: 0.6em;
+}
+
+.logo:hover path {
+    fill: var(--error-200);
+}

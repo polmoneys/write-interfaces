@@ -1,0 +1,18 @@
+.root {
+    --grid-max-width: 400px;
+    --grid-gap: 2rem max(5vw, 2rem);
+    width: 100%;
+    display: grid;
+    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-max-width)), 1fr));
+    gap: var(--grid-gap);
+}
+
+.root.stretch {
+    align-items: stretch;
+}
+
+.root.masonry {
+    align-items: baseline;
+    grid-auto-flow: dense;
+}

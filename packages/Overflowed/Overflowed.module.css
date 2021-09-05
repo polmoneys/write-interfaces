@@ -1,0 +1,51 @@
+.root {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.viewport {
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    /* overflow: auto hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; 
+    @media (prefers-reduced-motion: no-preference) {
+        & {
+            scroll-behavior: smooth;
+        }
+    }
+    */
+}
+
+.viewport.idle {
+    cursor: auto;
+}
+
+.progress {
+    position: relative;
+    height: 6px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: calc(100% - 5px);
+    border-radius: var(--component-radius-default);
+    background-color: var(--gray-400);
+    overflow: hidden;
+}
+
+.bar {
+    position: absolute;
+    height: 6px;
+    width: 0%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: currentColor;
+    border-radius: var(--component-radius-default);
+}

@@ -1,0 +1,62 @@
+body {
+    --font-height: 1.5;
+    /* userAgent 1.2 */
+    font-size: var(--base-font-size);
+    font-weight: 400;
+    line-height: var(--font-height);
+    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+p {
+    max-width: var(--optimal-readability);
+}
+
+:root {
+    /* Default font size */
+    --base-font-size: 1.1rem;
+
+    /* Optimal width  */
+    --optimal-container: 1390px;
+    --optimal-readability: 750px;
+    /* Default Spacer min-height */
+    --spacer: 1rem;
+
+    /* 'Everything' is a component  */
+    --component-margin: 1em;
+    --component-margin-min: 0.5em;
+    --component-padding: 1em;
+    --component-radius-default: 0.3em;
+    --component-radius-min: 0.1em;
+    --component-border-width: 2px;
+    --component-disabled-opacity: 0.8;
+
+    /* Interactive elements */
+    --tappable-height: 48px;
+    --tappable-padding-max: 0.8em;
+    --tappable-padding-min: 0.3em;
+    --tappable-padding: var(--tappable-padding-min) var(--tappable-padding-max);
+    --tappable-popover-offset: 6px;
+    --tappable-overlay-backdrop: blur(1px);
+
+    --tappable-radius-pill: 1.2em;
+
+    --tappable-focus-shadow: 0 0 4px var(--accent-000) inset;
+    --tappable-focus-outline: -webkit-focusAlgeria-ring-color auto 4px !important;
+    --tappable-ring-outline: 1px solid currentColor !important;
+    --tappable-ring-outline-offset: 3px !important;
+
+    /* Look and Feel  */
+    --animation-duration-default: 1s;
+
+    /* Z mgmt */
+    --default-z: 0;
+    --above: 1;
+    --below: -1;
+    --float-z: 2;
+    --overlay-z: 9;
+    --nav-z: 8;
+
+    /* Hacks */
+    --ios-padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}

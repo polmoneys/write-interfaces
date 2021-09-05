@@ -1,0 +1,322 @@
+/*
+
+FILE CONTENTS 
+-------------
+
+1) Containers
+2) Items 
+3) Ratio/Orientation
+4) Transforms
+5) Spacing
+6) Hovers
+7) Typography
+8) Extras
+
+*/
+
+/* 1) */
+.container {
+    block-size: 100%;
+    max-block-size: var(--optimal-container);
+    width: min(90vw, 1390px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+.container-full-viewport {
+    padding: 0 calc(50vw - calc(var(--optimal-container) / 2));
+    width: 100vw;
+    transform: translateX(calc(-50% + calc(var(--optimal-container) / 2)));
+}
+
+/* Help with layout shift (CLP), chrome only */
+
+.container-height {
+    --defered-height: 1200px;
+    content-visibility: auto;
+    contain-instrinsic-size: 1px var(--defered-height);
+}
+
+.flex {
+    /* make a row, defaults as .main-start.cross-baseline */
+    display: flex;
+}
+
+@media (orientation: landscape) {
+    /* col-to-row pattern */
+    .flex-landscape {
+        display: flex;
+    }
+}
+
+.col {
+    flex-direction: column;
+}
+
+.main-start {
+    justify-content: flex-start;
+}
+
+.main-end {
+    justify-content: flex-end !important;
+}
+
+.main-center {
+    justify-content: center;
+}
+
+.main-around {
+    justify-content: space-around;
+}
+
+.main-between {
+    justify-content: space-between;
+}
+
+.cross-center {
+    align-items: center;
+}
+
+.cross-start {
+    align-items: flex-start;
+}
+
+.cross-end {
+    align-items: flex-end;
+}
+
+.cross-baseline {
+    align-items: baseline;
+}
+
+.main-margin > *:not(:last-child) {
+    margin-right: var(--component-margin);
+}
+/* Grid items placement */
+
+.align-end {
+    align-items: end;
+}
+
+/* 2) */
+.stretch-width {
+    width: 100%;
+}
+
+.stretch-width-recursive,
+.stretch-width-recursive > * {
+    width: 100%;
+}
+
+.stretch-height {
+    height: 100%;
+}
+
+.stretch-height-recursive,
+.stretch-height-recursive > * {
+    height: 100%;
+}
+
+.unset-height {
+    height: fit-content !important;
+}
+
+.self {
+    flex: 1;
+}
+
+@media (orientation: portrait) {
+    .self-portrait-first {
+        order: -1 !important;
+    }
+}
+
+.self-inline {
+    align-self: start;
+}
+
+.self-unset {
+    flex: 1;
+    min-width: 0;
+}
+
+.self-none {
+    flex: none;
+    /* inflexible (w/h) => flex: 0 0 auto */
+}
+
+.self-center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.self-offscreen {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.self-invisible {
+    pointer-events: none;
+    xpointer-events: auto; /* instead of commenting out*/
+    position: absolute;
+    visibility: hidden;
+}
+
+.self-dead {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.self-revert {
+    all: revert;
+}
+
+/* 3) */
+
+@media (orientation: landscape) {
+    .portrait-only {
+        display: none !important;
+    }
+}
+@media (orientation: portrait) {
+    .landscape-only {
+        display: none !important;
+    }
+}
+
+/* 4) */
+
+.scaleDown {
+    transform: scale(0.7);
+    width: fit-content;
+}
+
+.originTop {
+    transform-origin: top;
+}
+
+/* 5) https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/ */
+
+:root {
+    --lobotomized-owl: 1rem;
+}
+@media (orientation: portrait) {
+    :root {
+        --lobotomized-owl: 1.2rem;
+    }
+}
+
+.owl > * + * {
+    margin-top: var(--lobotomized-owl, 1rem);
+}
+
+/* 6) */
+
+.hover-invert {
+    filter: invert(0.5);
+}
+.hover-brightness {
+    filter: brightness(1.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    /* we should be in a hoverable device */
+}
+
+/* 7) */
+.font-center {
+    text-align: center !important;
+}
+
+/* Make type faux bold */
+.font-fake-bold {
+    text-shadow: 1px 0 0 currentColor;
+}
+
+@supports (font-size-adjust: 1) {
+    .enchance-font-swap {
+        font-size-adjust: 0.5;
+    }
+}
+
+.font-blur {
+    text-shadow: 0 0 30px currentColor;
+}
+
+@supports ((-webkit-text-decoration-skip: ink) or (text-decoration-skip-ink: auto)) {
+    /* Allow breaks for descenders */
+    a:not([class]),
+    a:not([class]):visited,
+    a:not([class]):hover {
+        text-underline-offset: 0px;
+        -webkit-text-decoration: currentColor solid underline;
+        text-decoration: currentColor solid underline;
+        -webkit-text-decoration-skip-ink: auto;
+        text-decoration-skip-ink: auto;
+    }
+}
+
+/* with a six-character word limit, three characters before the hyphenation break and two after */
+
+.hyphen- {
+    -webkit-hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    -webkit-hyphenate-limit-chars: 6 3 3;
+    -webkit-hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-last: always;
+    -webkit-hyphenate-limit-zone: 8%;
+    -moz-hyphens: auto;
+    -moz-hyphenate-limit-chars: 6 3 3;
+    -moz-hyphenate-limit-lines: 2;
+    -moz-hyphenate-limit-last: always;
+    -moz-hyphenate-limit-zone: 8%;
+    -ms-hyphens: auto;
+    -ms-hyphenate-limit-chars: 6 3 3;
+    -ms-hyphenate-limit-lines: 2;
+    -ms-hyphenate-limit-last: always;
+    -ms-hyphenate-limit-zone: 8%;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
+    hyphenate-limit-zone: 8%;
+}
+
+/* caniuse mid 2021 no Safari */
+/* By default the font will have a weight of 400,
+   and a width of 400 */
+.thin-and-narrow {
+    /* Set both weight and width to 100 */
+    font-variation-settings: 'wght' 100, 'wdth' 100;
+}
+
+.thin-and-narrow:hover {
+    /* On hover, slightly increase the weight. But
+       watch out! Instead of leaving the width at 100,
+       this will reset it to the original value of 400! */
+    font-variation-settings: 'wght' 200;
+}
+
+/* 8) */
+.fullScreen:fullscreen {
+    background-color: var(--accent-nemesis-100);
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (prefers-reduced-data: no-preference) {
+    /* user does not prefers to reduce data so go wild*/
+}

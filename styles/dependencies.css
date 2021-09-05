@@ -1,0 +1,29 @@
+/* Some deps require non pure selectors so bad with ****.module.css */
+:root {
+    --reach-tabs: 1;
+    --reach-menu-button: 1;
+    --reach-combobox: 1;
+    --reach-listbox: 1;
+    --reach-checkbox: 1;
+    --reach-dialog: 1;
+    --reach-tooltip: 1;
+}
+
+[data-reach-dialog-overlay] {
+    background-color: var(--tappable-overlay-bg);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+}
+
+[data-reach-tooltip] {
+    z-index: 1;
+    pointer-events: none;
+    position: absolute;
+    hyphens: auto;
+    box-shadow: var(--component-shadow);
+    padding: var(--component-padding);
+}

@@ -1,0 +1,68 @@
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--component-padding);
+    background-color: var(--component-bg-secondary);
+    border-radius: var(--component-radius-default);
+    box-shadow: var(--component-shadow);
+}
+
+.list,
+.subList {
+    width: 100%;
+    list-style: none;
+}
+
+.label {
+    width: fit-content;
+}
+
+.subList {
+    padding: var(--component-padding);
+    background-color: var(--component-bg-secondary);
+    border-radius: var(--component-radius-default);
+    box-shadow: var(--component-shadow);
+    position: absolute;
+    right: 0;
+    z-index: var(--above);
+    min-width: 220px;
+    width: fit-content;
+    top: 0;
+    flex-direction: column;
+}
+.subList:hover {
+    display: flex;
+}
+
+.item {
+    position: relative;
+    display: flex;
+}
+.item > button {
+    width: 100%;
+    justify-content: flex-start !important;
+}
+
+.button:hover {
+    background-color: transparent;
+}
+.button:hover + .subList {
+    display: flex;
+}
+
+.button svg:nth-of-type(2) {
+    position: absolute;
+    right: 8px;
+}
+
+.button:hover,
+.button:focus {
+    color: var(--accent-200);
+}
+.button:hover svg:first-of-type {
+    stroke: var(--accent-200);
+}
+/* .button:hover svg:nth-of-type(2) {
+    stroke-width: 1;
+} */

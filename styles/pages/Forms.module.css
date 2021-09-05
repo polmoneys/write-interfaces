@@ -1,0 +1,15 @@
+.rootForm {
+    width: 100%;
+}
+
+.dropDownItemActive {
+    font-weight: bolder;
+    justify-content: space-between !important;
+}
+.autocompleteWidth {
+    width: 100%;
+}
+
+.countries {
+    width: 100%;
+}

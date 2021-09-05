@@ -1,0 +1,58 @@
+.kbd {
+    background-color: var(--accent-000);
+    color: var(--accent-200);
+    padding: 0 var(--tappable-padding-min) 2px var(--tappable-padding-min);
+    border-radius: 0.3em;
+}
+.experimental {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+@media (orientation: landscape) {
+    .experimental {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: auto;
+    }
+}
+
+.menupop,
+.menupopB {
+    width: 100%;
+    max-width: 190px;
+}
+
+.menupop > button {
+    background-color: var(--error-000) !important;
+    color: var(--error-200) !important;
+    border: var(--component-border-width) solid var(--error-200) !important;
+}
+
+.menupop > button + div {
+    color: var(--white) !important;
+    background-color: var(--error-200) !important;
+}
+
+.menupop [role='menuitem'] {
+    width: 100%;
+}
+.menupop [role='menuitem']:hover {
+    filter: brightness(1.2) !important;
+}
+
+.menupopB > button {
+    background-color: var(--accent-000) !important;
+    color: var(--accent-200) !important;
+    border: var(--component-border-width) solid var(--accent-200) !important;
+}
+.menupopB [role='menu']  {
+    color: var(--white) !important;
+    background-color: var(--accent-000) !important;
+}
+.menupopB > button + div {
+    color: var(--white) !important;
+    background-color: var(--accent-200) !important;
+}
+.menupopB [role='menuitem'] {
+    width: 100%;
+}

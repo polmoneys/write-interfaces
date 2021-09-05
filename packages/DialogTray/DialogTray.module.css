@@ -1,0 +1,33 @@
+.overlay {
+    background-color: var(--tappable-overlay-bg);
+    backdrop-filter: var(--tappable-overlay-backdrop);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: var(--overlay-z);
+}
+.root {
+    --tray-min-height: 200px;
+    background-color: var(--tappable-dialog-bg);
+    box-shadow: var(--component-shadow);
+    width: min(750px, calc(100% - 1em));
+    height: var(--tray-min-height);
+    max-height: min(var(--tray-min-height), 70vh);
+    /*max-height trumps height, but not min-height */
+    padding: var(--component-padding);
+    padding-bottom: env(safe-area-inset-bottom);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateY(var(--tray-min-height));
+    outline: none;
+    overflow: auto;
+    /* https://caniuse.com/css-overscroll-behavior */
+    overscroll-behavior: contain;
+}
+
+.root.isOpen {
+    transform: translateY(0);
+}

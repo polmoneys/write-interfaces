@@ -1,0 +1,110 @@
+.field {
+    width: 100%;
+    position: relative;
+}
+
+.field input:not([type='checkbox']) {
+    width: 100%;
+    min-height: var(--tappable-height);
+    flex: 1;
+    padding: 0 var(--tappable-padding-max);
+    caret-color: currentColor;
+    border: none;
+}
+
+.field input:not([type='checkbox'])::-webkit-input-placeholder {
+    color: var(--gray-500);
+}
+.field input:not([type='checkbox'])::-ms-input-placeholder {
+    color: var(--gray-500);
+}
+
+.field input:focus,
+.field input:active {
+    outline: none !important;
+    outline: var(--tappable-focus-outline);
+    box-shadow: var(--tappable-focus-shadow);
+    border-radius: 0 !important;
+}
+
+.field label {
+    display: flex;
+    width: 100%;
+    margin-bottom: var(--component-margin);
+}
+
+.field label::after {
+    content: '\A';
+    white-space: pre;
+}
+
+.fieldRow {
+    display: flex;
+    width: 100%;
+    transition: border 0.3s ease;
+    outline: var(--component-border-width) solid currentColor;
+    height: var(--tappable-height);
+}
+
+.fieldRow input {
+    flex-grow: 1;
+}
+
+.fieldRow:focus {
+    outline: none;
+    border-color: var(--accent-200);
+}
+
+.fieldRow > span {
+    display: flex;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 90%;
+    padding: var(--component-padding);
+    background-color: var(--component-bg-secondary);
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+.fieldRow > span:first-child {
+    border-right: var(--component-border-width) solid transparent;
+}
+
+.fieldRow > span:last-child {
+    border-left: var(--component-border-width) solid transparent;
+}
+
+.fieldRow:focus-within > span {
+    color: var(--accent-200);
+    background: var(--accent-000);
+    border-color: var(--accent-200);
+}
+
+.fieldRow:focus-within > input {
+    color: var(--accent-200);
+}
+
+.fieldRow:focus-within > span:first-child {
+    border-right: var(--component-border-width) solid var(--accent-200);
+}
+
+.fieldRow:focus-within > span:last-child {
+    border-left: var(--component-border-width) solid var(--accent-200);
+}
+
+.fieldRow > span:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.fieldRow input:not([type='checkbox'])::-webkit-input-placeholder {
+    color: var(--accent-200);
+}
+.fieldRow input:not([type='checkbox'])::-ms-input-placeholder {
+    color: var(--accent-200);
+}
+
+.field.error {
+    opacity: var(--component-disabled-opacity);
+}
+
+.field > div + div {
+    transform: translateY(6px);
+}

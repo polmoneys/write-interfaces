@@ -1,0 +1,104 @@
+.root,
+.group li,
+.stack li {
+    transition: var(--animation-duration-default) ease;
+    --avatar-width: 5em;
+    --avatar-height: 5em;
+
+    width: var(--avatar-width) !important;
+    height: var(--avatar-height) !important;
+    border-radius: 50% !important;
+    border: var(--component-border-width) solid var(--error-200);
+    box-shadow: var(--component-shadow-soft);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.root:hover {
+    transform: scale(1.1);
+}
+
+.root img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50% !important;
+    user-select: none;
+}
+
+.wrap {
+    display: grid;
+}
+
+.wrap > * {
+    content: '';
+    grid-area: 1 / 1 / -1 / -1;
+}
+
+.stack,
+.group {
+    list-style-type: none;
+}
+
+.group li:nth-child(1) {
+    z-index: 5;
+}
+.group li:nth-child(2) {
+    transform: translateX(1em);
+    z-index: 6;
+}
+.group li:nth-child(3) {
+    transform: translateX(2em);
+    z-index: 7;
+}
+
+/* .group:hover li:nth-child(1) {
+    z-index: 10;
+} */
+.group:hover li:nth-child(2) {
+    transform: translateX(3em);
+}
+.group:hover li:nth-child(3) {
+    transform: translateX(6em);
+}
+
+.stack li:nth-child(1) {
+    position: relative;
+    transform: translate(-4px, -4px);
+    z-index: 6;
+}
+
+.stack li:nth-child(2) {
+    position: relative;
+    transform: translate(4px, 4px);
+    z-index: 7;
+}
+.stack li:nth-child(3) {
+    position: relative;
+    z-index: 9;
+}
+
+.stack:hover li:nth-child(1) {
+    transform: translate(-10px, -10px);
+}
+.stack:hover li:nth-child(2) {
+    transform: translate(10px, 10px);
+}
+
+.badge {
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    bottom: -0.5em;
+    right: -0.5em;
+    border-radius: 50%;
+    color: var(--white);
+    background-color: var(--error-200);
+    font-weight: bold;
+    z-index: 2;
+    text-align: center;
+    box-shadow: var(--component-shadow-soft);
+}

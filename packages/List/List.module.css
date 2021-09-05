@@ -1,0 +1,108 @@
+.list {
+    color: var(--text-primary);
+    width: 100%;
+}
+
+/* State in ListContex can be 'compact' 
+to provide a more focused less-content list  */
+
+.list.listCompact {
+}
+
+.listCompact .listItem {
+    /* to do */
+}
+
+.listItem {
+    align-items: center;
+    display: flex;
+}
+
+.listItem:first-child {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.listItem:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.content {
+    overflow: hidden;
+    padding: var(--component-padding);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contentBody {
+    flex: 1;
+    min-width: 0;
+}
+
+.contentLeft {
+    margin-right: auto;
+}
+
+.contentRight {
+    margin-left: auto;
+    padding-left: 0;
+    overflow: visible;
+}
+
+.contentDescription {
+    display: block;
+    font-size: 85%;
+    margin-top: 0.5em;
+    white-space: normal;
+    color: var(--text-secondary);
+    overflow: inherit;
+    text-overflow: inherit;
+}
+
+/* State for list items if event handlers are in use*/
+.pressed {
+}
+.hovered {
+}
+
+.disabled {
+    opacity: var(--component-disabled-opacity);
+    color: var(--text-primary);
+    cursor: not-allowed;
+}
+
+.listDivider {
+    background-color: var(--list-accent);
+    color: var(--list-accent-color);
+    border-top: var(--component-border-width) solid var(--list-accent-color) !important;
+    border-bottom: var(--component-border-width) solid var(--list-accent-color) !important;
+    transform: translateY(var(--component-border-width));
+}
+
+.listDivider:first-child {
+    transform: translateY(calc(var(--component-border-width) * -1));
+}
+
+.listTraced {
+    border: var(--component-border-width) solid var(--list-accent-color);
+}
+
+.listDividerTitle {
+    font-weight: 700;
+    margin-bottom: -0.5em;
+    margin-top: -0.5em;
+}
+
+.animatedItemSlideIn {
+    animation: show 600ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transform-origin: top center;
+}
+
+@keyframes show {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

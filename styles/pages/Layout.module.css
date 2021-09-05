@@ -1,0 +1,42 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iconCard {
+    width: 100%;
+    height: max(10vh, 190px);
+    display: flex;
+    background-color: var(--component-bg);
+    justify-content: center;
+    align-items: center;
+    border: var(--component-border-width) solid var(--component-border);
+    box-shadow: var(--component-shadow);
+}
+
+.rootSlots button,
+.rootSlotsDiv {
+    transition: filter var(--animation-duration-default) ease-in;
+    outline: none !important;
+    border: var(--component-border-width) solid currentColor !important;
+}
+.rootSlots button:hover {
+    background-color: var(--accent-000);
+    color: var(--accent-200);
+}
+.rootSlotsDiv {
+    padding: var(--component-padding);
+    height: 100%;
+    background-color: var(--accent-200);
+    color: var(--white);
+}
+
+@media (orientation: portrait) {
+    .rootSlots > div {
+        padding: var(--component-padding);
+        height: 100%;
+        background-color: var(--error-200);
+        color: var(--white);
+    }
+}

@@ -1,0 +1,15 @@
+.root {
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    text-transform: uppercase;
+    font-size: 75%;
+    padding: var(--tappable-padding-min) var(--tappable-padding-max);
+    border-radius: var(--component-radius-default);
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+}
+
+.root.pill {
+    border-radius: var(--tappable-radius-pill);
+}

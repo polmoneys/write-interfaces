@@ -1,0 +1,30 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.root button:not(:last-child) {
+    margin-right: var(--component-margin);
+    min-width: 50px;
+    justify-content: center;
+}
+
+.buttonActive {
+    color: var(--accent-200) !important;
+    background-color: var(--accent-000) !important;
+}
+
+.buttonInactive {
+    opacity: 0.8;
+    outline: 1px solid;
+}
+
+.ellipsis {
+    padding: 0.5em var(--component-padding) 0 var(--component-padding);
+    margin-right: var(--component-margin);
+    align-self: stretch;
+    opacity: 0.8;
+    outline: 1px solid;
+    width: 50px;
+    text-align: center;
+}

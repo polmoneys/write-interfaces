@@ -1,0 +1,111 @@
+.tabs[data-reach-tabs] {
+    width: 100%;
+    box-shadow: var(--component-shadow);
+    border: var(--component-border-width) solid var(--component-border);
+    background-color: var(--component-bg);
+}
+
+.tabs [data-reach-tab-list],
+.tabs [data-reach-tab-panels] {
+    display: flex;
+}
+
+.tabs [data-reach-tab-list] > * {
+    flex: 1;
+    /* make buttons fill available height */
+}
+
+.tabs [data-reach-tab-panels] {
+    width: 100% !important;
+}
+.tabs[data-orientation='horizontal'] [data-reach-tab-panels] {
+    min-height: 240px;
+    flex: 1;
+}
+
+.tabs [data-reach-tab] {
+    display: flex;
+    align-items: center;
+    border: none;
+    color: inherit;
+    font: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    padding: var(--component-padding);
+}
+
+.tabs [data-reach-tab][data-orientation='horizontal'] {
+    flex: 1;
+}
+
+.tabs [data-reach-tab-panel] {
+    padding: var(--component-padding);
+    flex: 1;
+}
+
+.tabs [data-reach-tab-panel].action-tight {
+    padding: 0;
+}
+
+/* TAB STATES */
+
+.tabs [data-reach-tab]:focus,
+.tabs [data-reach-tab-panel]:focus,
+.tabs [data-reach-tab]:active {
+    outline: none !important;
+    outline: var(--tappable-focus-outline);
+    box-shadow: var(--tappable-focus-shadow);
+    border-radius: 0 !important;
+}
+
+.tabs [data-reach-tab]:disabled {
+    opacity: var(--component-disabled-opacity);
+
+    cursor: no-drop;
+}
+
+.tabs [data-orientation='horizontal'] [data-reach-tab-panel] {
+    border-top: none;
+}
+
+/* VERTICAL */
+
+.tabs[data-reach-tabs][data-orientation='vertical'] {
+    display: flex;
+}
+
+.tabs [data-reach-tab-list][aria-orientation='vertical'] {
+    min-width: fit-content;
+}
+
+.tabs [data-reach-tab][data-orientation='vertical'] {
+    width: 100%;
+}
+
+.tabs [data-reach-tab-list][aria-orientation='vertical'] {
+    flex-direction: column;
+}
+
+.hoverPill {
+    position: relative;
+    justify-content: center;
+}
+.hoverPill:hover {
+    color: var(--accent-200);
+}
+.hoverPill::before {
+    content: '';
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    min-width: 90px;
+    height: 2em;
+    left: 50%;
+    transition: 0.25s ease;
+    position: absolute;
+    transform: translateX(-50%);
+}
+.hoverPill:hover::before {
+    background-color: var(--accent-000) !important;
+}

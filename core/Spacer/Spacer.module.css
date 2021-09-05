@@ -1,0 +1,20 @@
+.spacer {
+    width: 100%;
+    display: flex;
+    min-height: var(--spacer);
+    /* min-height: clamp(1rem, 4vh, 3rem); */
+    speak: never;
+    pointer-events: none;
+}
+
+@media (orientation: landscape) {
+    .portraitOnly {
+        display: none;
+    }
+}
+
+@media (orientation: portrait) {
+    .landscapeOnly {
+        display: none;
+    }
+}

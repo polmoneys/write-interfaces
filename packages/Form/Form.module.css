@@ -1,0 +1,10 @@
+.form {
+    border: var(--component-border-width) solid transparent;
+    width: 100%;
+}
+.form.invalid {
+    opacity: var(--component-disabled-opacity);
+}
+
+.form:focus-within {
+}

@@ -1,0 +1,43 @@
+.overlay {
+    /* [data-reach-alert-dialog-overlay] */
+    background-color: var(--tappable-overlay-bg);
+    backdrop-filter: var(--tappable-overlay-backdrop);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: var(--overlay-z);
+}
+.root {
+    /* [data-reach-alert-dialog-content]  */
+    width: min(700px, calc(100% - 2em));
+    background-color: var(--tappable-dialog-bg);
+    box-shadow: var(--component-shadow);
+    border-radius: var(--component-radius-min);
+    padding: var(--component-padding);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    /* https://caniuse.com/css-overscroll-behavior */
+    overscroll-behavior: contain;
+}
+
+.root [data-reach-alert-dialog-description] {
+    flex: 1;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (orientation: landscape) {
+    .actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.root > .accent svg {
+    margin: 0 !important;
+}

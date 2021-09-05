@@ -1,0 +1,76 @@
+/* EFFECTS */
+
+.fontBlend {
+    mix-blend-mode: overlay; /* difference | multiply*/
+}
+
+.fontNumber {
+    font-variant-numeric: tabular-nums;
+}
+
+.fontFancy {
+    text-edge: cap alphabetic;
+    leading-trim: both;
+}
+
+.fontFlow {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.fontBreak {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* SIZES  */
+
+.font14 {
+    font-size: 14px;
+}
+
+.font16 {
+    font-size: var(--base-font-size);
+}
+
+.font20 {
+    font-size: 20px;
+}
+
+.font24 {
+    font-size: 24px;
+}
+
+.font34 {
+    font-size: 34px;
+}
+
+.font48 {
+    font-size: 48px;
+}
+.font60 {
+    font-size: 60px;
+    letter-spacing: -0.5px !important;
+    line-height: 1 !important;
+}
+.font96 {
+    font-size: 96px;
+    letter-spacing: -1.5px !important;
+    line-height: 1 !important;
+}
+
+@media (orientation: portrait) {
+    .font34 {
+        font-size: 24px;
+    }
+    .font48 {
+        font-size: 34px;
+    }
+    .font60 {
+        font-size: 48px;
+    }
+    .font96 {
+        font-size: 60px;
+        letter-spacing: -0.5px !important;
+    }
+}

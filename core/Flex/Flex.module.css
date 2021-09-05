@@ -1,0 +1,56 @@
+.flex,
+.flexCol,
+.flexRow {
+    display: flex;
+}
+.flexCol {
+    flex-direction: column;
+}
+.flexRow {
+    flex-direction: row;
+}
+.flexWrap {
+    flex-wrap: wrap;
+}
+.flexBreakRow {
+    flex-basis: 100%;
+    height: 0;
+}
+.flexTop {
+    margin-top: auto;
+}
+.flexRight {
+    margin-right: auto;
+}
+.flexBottom {
+    margin-bottom: auto;
+}
+.flexLeft {
+    margin-left: auto;
+}
+
+@media (orientation: landscape) {
+    /* col-to-row pattern */
+    .flexLandscape {
+        display: flex;
+        width: 100%;
+    }
+}
+
+@media (orientation: portrait) {
+    .portraitFirst {
+        order: -1 !important;
+    }
+}
+
+@media (orientation: landscape) {
+    .portraitOnly {
+        display: none;
+    }
+}
+
+@media (orientation: portrait) {
+    .landscapeOnly {
+        display: none;
+    }
+}

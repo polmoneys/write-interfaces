@@ -1,0 +1,51 @@
+.checkBoxField [data-reach-custom-checkbox-container] {
+    display: inline-flex;
+    position: relative;
+    margin-right: 1em;
+    cursor: default;
+    width: 2em;
+    height: 2em;
+    outline: var(--component-border-width) solid currentColor;
+}
+
+.checkBoxField [data-reach-custom-checkbox-container]:focus-within,
+.checkBoxField [data-reach-custom-checkbox-container][data-focus] {
+    outline-color: var(--gray-500);
+    border-radius: 0 !important;
+}
+
+.checkBoxField [data-reach-custom-checkbox-input] {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    z-index: 1 !important;
+    cursor: inherit;
+    box-shadow: none !important;
+    outline: none;
+}
+
+.checkBoxField [data-reach-custom-checkbox][data-state='checked'] {
+}
+.checkBoxField [data-reach-custom-checkbox][data-state='unchecked'] {
+}
+.checkBoxField [data-reach-custom-checkbox][data-state='mixed'] {
+}
+
+.checkBoxField label {
+    margin-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+.checkBoxField svg {
+    position: absolute;
+}
+
+.checkBoxField > label + div {
+    transform: translateY(6px);
+}

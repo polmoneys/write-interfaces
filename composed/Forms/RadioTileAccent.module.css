@@ -1,0 +1,50 @@
+.root {
+    margin-top: var(--component-margin);
+    outline: var(--component-border-width) solid var(--accent-200);
+    color: var(--accent-200);
+}
+.root:hover {
+    color: var(--error-200) !important;
+    filter: none !important;
+}
+.root.checked,
+.root.focus,
+.root:hover {
+    outline-color: var(--error-200);
+}
+.root:hover svg {
+    stroke: var(--error-200);
+}
+.root:hover path {
+    fill: var(--error-200) !important;
+}
+.root:hover::after,
+.root:hover::before {
+    background-color: var(--error-200) !important;
+}
+
+.root::after {
+    background-color: var(--accent-200);
+}
+
+.root::before {
+    background-color: var(--error-200);
+}
+
+.root.checked::after {
+    background-color: var(--error-000);
+}
+
+.root.checked::before {
+    background-color: var(--error-200);
+    opacity: 1;
+}
+
+.root.focus,
+.root.checked {
+    color: var(--error-200);
+}
+
+.root.focus::after {
+    background-color: var(--error-200);
+}

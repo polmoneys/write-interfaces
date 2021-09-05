@@ -1,0 +1,40 @@
+.overlay {
+    /* [data-reach-dialog-overlay] */
+    background-color: var(--tappable-overlay-bg);
+    backdrop-filter: var(--tappable-overlay-backdrop);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: var(--overlay-z);
+}
+.root {
+    /* [data-reach-dialog-content]  */
+    background-color: var(--tappable-dialog-bg);
+    box-shadow: var(--component-shadow);
+    padding: var(--component-padding);
+    border-radius: var(--component-radius-min);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    /* https://caniuse.com/css-overscroll-behavior */
+    overscroll-behavior: contain;
+}
+
+.root.portrait {
+    width: min(320px, calc(100% - 2em));
+    min-height: max(20vh, 380px);
+}
+
+.root.landscape {
+    width: min(750px, calc(100% - 2em));
+    min-height: max(20vh, 380px);
+}
+
+.root [data-reach-dialog-description] {
+    flex: 1;
+}
+
+.root > button svg {
+    margin: 0 !important;
+}

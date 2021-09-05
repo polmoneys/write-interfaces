@@ -1,0 +1,15 @@
+.root {
+    padding: var(--component-padding);
+    box-shadow: var(--component-shadow);
+    transform: translateY(1px);
+}
+
+.root.error {
+    color: var(--error-200);
+    outline: var(--component-border-width) solid var(--error-200);
+}
+
+.root.success {
+    color: var(--accent-200);
+    outline: var(--component-border-width) solid var(--accent-200);
+}

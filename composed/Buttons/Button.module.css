@@ -1,0 +1,40 @@
+.nemesis,
+.accent,
+.error {
+    transition: filter var(--animation-duration-default) ease-in;
+}
+.accent:hover,
+.nemesis:hover,
+.error:hover {
+    filter: brightness(1.3) !important;
+}
+
+.accent {
+    background-color: var(--accent-000) !important;
+    color: var(--accent-200) !important;
+    outline: var(--component-border-width) solid var(--accent-200) !important;
+}
+
+.nemesis {
+    background-color: var(--gray-100) !important;
+    color: var(--white) !important;
+    outline: var(--component-border-width) solid var(--gray-100) !important;
+}
+
+.error {
+    background-color: var(--error-000) !important;
+    color: var(--error-200) !important;
+    outline: var(--component-border-width) solid var(--error-200) !important;
+}
+/* 
+@media (prefers-color-scheme: dark) {
+    .accent {
+        background-color: var(--accent-000) !important;
+        color: var(--accent-200) !important;
+    }
+
+    .nemesis {
+        background-color: var(--white) !important;
+        color: var(--gray-200) !important;
+    }
+} */

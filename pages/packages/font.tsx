@@ -1,0 +1,29 @@
+import { Page, Title, SpacerSection } from '@/composed';
+import Code from '@/features/tutorial/Code';
+
+export default function Font() {
+    return (
+        <Page title={'Packages: Tappables'}>
+            <SpacerSection />
+            <Title>
+                <b>Font</b> should be composed.
+            </Title>
+            <SpacerSection />
+            <Code children={DemoCode} />
+            <SpacerSection />
+        </Page>
+    );
+}
+
+const DemoCode = `import Font, { Props } from '@/packages/Font/Font';
+import styles from './Font.module.css';
+// Compose variants
+const HelveticaNeue = (props: Props) => <Font {...props} compose={styles.helveticaNeue} />;
+const HelveticaNeueMedium = (props: Props) => <Font {...props} compose={styles.medium} />;
+const HelveticaNeueBold = (props: Props) => <Font {...props} compose={styles.bold} />;
+const HelveticaNeueThin = (props: Props) => <Font {...props} compose={styles.thin} />;
+const Grotesk = (props: Props) => <Font {...props} compose={styles.grotesk} />;
+
+// Use variant
+import {HelveticaNeue} from'@/composed';
+<HelveticaNeue> Yup </HelveticaNeue>`;

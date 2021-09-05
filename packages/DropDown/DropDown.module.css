@@ -1,0 +1,98 @@
+.dropDown {
+    min-height: var(--tappable-height);
+    width: 100%;
+    position: relative;
+}
+
+.dropDown [data-reach-menu] {
+    width: 100%;
+    position: absolute;
+    top: calc(var(--tappable-height) + var(--tappable-popover-offset)) !important;
+    background-color: var(--component-bg);
+    box-shadow: var(--component-shadow);
+    z-index: var(--float-z);
+}
+
+.dropDown [data-reach-menu-button] {
+    box-shadow: var(--component-shadow);
+    min-height: var(--tappable-height);
+    padding: var(--tappable-padding);
+    background-color: var(--component-bg);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: inherit;
+    border: var(--component-border-width) solid var(--component-border);
+}
+
+.dropDown [data-reach-menu-button] span {
+    display: inline-flex;
+}
+
+.dropDown [data-reach-menu-button] svg {
+    min-width: 12px;
+    margin-left: var(--tappable-padding-max);
+}
+.dropDown.dropDownHorizontal [data-reach-menu-button] {
+    min-width: 80px;
+}
+
+.dropDown.dropDownHorizontal [data-reach-menu] {
+    top: 0 !important;
+    left: calc(var(--tappable-height) + 1.5em);
+    width: fit-content;
+}
+
+.dropDownItemActive {
+    font-weight: 700 !important;
+}
+
+.dropDown [data-reach-menu-item] {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    user-select: none;
+    cursor: pointer;
+    /* a/link */
+    color: currentColor;
+    font: inherit;
+    text-decoration: initial;
+    /* both */
+    min-height: var(--tappable-height);
+    min-width: 0;
+    padding: 0 var(--tappable-padding-min);
+    border: var(--component-border-width) solid currentColor;
+    outline: none;
+    overflow: hidden;
+}
+.dropDown [data-reach-menu-item]:not(:last-of-type) {
+    border-bottom: none;
+}
+
+.dropDown.dropDownHorizontal [data-reach-menu-item]:not(:last-of-type) {
+    border-bottom: 1px solid currentColor;
+    border-right: none;
+}
+.dropDown.dropDownHorizontal [data-reach-menu-item] {
+    min-width: 90px;
+}
+.dropDown [data-reach-menu][hidden],
+.dropDown [data-reach-menu-popover][hidden] {
+    display: none;
+}
+
+.dropDown.dropDownHorizontal [data-reach-menu-items] {
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+}
+.dropDown [data-reach-popover]:focus,
+.dropDown [data-reach-popover]:active,
+.dropDown [data-menu-items]:focus {
+    outline: none !important;
+    outline: var(--tappable-focus-outline);
+    box-shadow: var(--tappable-focus-shadow);
+    border-radius: 0 !important;
+}

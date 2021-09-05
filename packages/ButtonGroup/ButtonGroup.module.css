@@ -1,0 +1,71 @@
+.buttonGroup {
+    --butonGroup-display: inline-flex;
+    --butonGroup-flex-direction: row;
+    --butonGroup-group-direction: row;
+    align-items: stretch;
+    display: flex;
+    flex-direction: var(--butonGroup-group-direction);
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.buttonGroup.buttonGroupVertical {
+    --butonGroup-group-direction: column;
+}
+
+.buttonGroup > * {
+    -webkit-text-fill-color: currentColor;
+    white-space: nowrap;
+    display: flex;
+    flex-grow: 1;
+}
+
+.buttonGroup button {
+    outline: none !important;
+    border: var(--component-border-width) solid currentColor !important;
+}
+.buttonGroup.buttonGroupVertical > * {
+    width: 100%;
+}
+
+.buttonGroup.buttonGroupVertical > button:first-of-type {
+    border-top-left-radius: var(--component-radius-default);
+    border-top-right-radius: var(--component-radius-default);
+}
+.buttonGroup.buttonGroupVertical > button:last-of-type {
+    border-bottom-left-radius: var(--component-radius-default);
+    border-bottom-right-radius: var(--component-radius-default);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > button:first-of-type {
+    border-top-left-radius: var(--component-radius-default);
+    border-bottom-left-radius: var(--component-radius-default);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > button:last-of-type {
+    border-top-right-radius: var(--component-radius-default);
+    border-bottom-right-radius: var(--component-radius-default);
+}
+
+.buttonGroup.buttonGroupVertical > * + * {
+    margin-top: calc(var(--component-border-width) * -1);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > * + * {
+    margin-left: calc(var(--component-border-width) * -1);
+}
+
+.buttonGroup button:focus {
+    border: var(--component-border-width) solid currentColor;
+}
+
+/* Split Button */
+
+.buttonSplit button:first-of-type {
+    flex-grow: 1;
+    justify-content: center;
+}
+.buttonSplit button:last-of-type {
+    flex-grow: 0;
+}

@@ -1,0 +1,14 @@
+.root {
+    --grid-noOfColumns: 1fr;
+    --grid-unit-gap: var(--component-margin);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(var(--grid-noOfColumns), 1fr);
+    gap: var(--grid-unit-gap);
+}
+
+.masonry {
+    align-items: baseline;
+    grid-auto-flow: dense;
+}

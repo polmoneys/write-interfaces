@@ -1,0 +1,105 @@
+.button {
+    display: inline-flex;
+    align-self: start;
+    background-color: var(--component-bg);
+    color: inherit;
+    border: none !important;
+    outline: var(--component-border-width) solid currentColor;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    min-height: var(--tappable-height);
+    padding: 0 var(--tappable-padding-max);
+    box-shadow: var(--component-shadow);
+    -webkit-tap-highlight-color: transparent;
+}
+
+a.button {
+    border: var(--component-border-width) solid currentColor !important;
+    outline: none !important;
+}
+
+.flexCenter {
+    align-items: center;
+}
+.buttonGhost {
+    background-color: transparent;
+    outline: var(--component-border-width) solid transparent !important;
+    box-shadow: none !important;
+}
+.buttonGhost:hover {
+    background-color: transparent;
+}
+.buttonIcon {
+    justify-content: center;
+}
+
+.buttonIcon > span + svg {
+    margin-left: 0.5em;
+}
+.buttonIcon > svg:first-child {
+    margin-right: 0.5em;
+}
+
+.buttonPill {
+    min-width: auto;
+    min-height: calc(var(--tappable-height) - 10px);
+    padding: var(--tappable-padding);
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: var(--tappable-radius-pill);
+    border: var(--component-border-width) solid currentColor !important;
+    outline: none !important;
+}
+
+.buttonPill:focus,
+.buttonPill:hover,
+.buttonPill:active {
+    border-radius: var(--tappable-radius-pill) !important;
+    outline: none !important;
+}
+
+.buttonPill svg {
+    margin-right: 6px;
+}
+
+.link {
+    display: inline !important;
+    min-height: 0;
+    max-width: auto;
+    width: fit-content;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    background: transparent;
+    color: currentColor;
+    -webkit-appearance: none;
+}
+.link:focus {
+    outline: none;
+}
+.link.buttonIcon {
+    display: inline-flex !important;
+    justify-content: flex-start;
+    justify-content: center;
+}
+
+.noUnderline {
+    text-decoration: none !important;
+}
+
+.stretch {
+    width: 100% !important;
+}
+
+/* Button states if event handlers are in use */
+
+.pressed {
+}
+
+.hovered {
+}

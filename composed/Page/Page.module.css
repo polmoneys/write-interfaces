@@ -1,0 +1,28 @@
+.public {
+    padding: 0 12px;
+    --max-width: 1440px;
+    width: min(90%, var(--max-width));
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+@media (orientation: landscape) {
+    .public {
+        padding: 0 6px;
+    }
+}
+
+.landing {
+    --min-defered-height: 1200px;
+    content-visibility: auto;
+    contain-instrinsic-size: 1px var(--min-defered-height);
+}
+
+.private {
+    width: 100%;
+}
+
+.sidebar {
+    width: 100%;
+    height: 100vh;
+}

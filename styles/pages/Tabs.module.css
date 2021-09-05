@@ -1,0 +1,7 @@
+.tabsHeader > * {
+    flex: 1 !important;
+}
+
+.tabsVertical {
+    border-right: 2px solid currentColor;
+}

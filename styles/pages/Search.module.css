@@ -1,0 +1,56 @@
+@media (orientation: portrait) {
+    .toolbar > *:not(last-child) {
+        margin-bottom: var(--component-margin);
+    }
+}
+
+.toolbar > *:not(:last-child) {
+    flex: 1;
+    margin-right: var(--component-margin);
+}
+.toolbar > *:first-child {
+    flex: 2;
+}
+.toolbar > *:not(first-child) {
+    align-self: flex-end;
+}
+
+.toolbar > *:not(last-child) {
+    width: auto !important;
+}
+
+.sorterRoot {
+    width: 100%;
+}
+.filtersRoot {
+    position: relative;
+    width: 100%;
+}
+.filtersRoot [data-reach-disclosure-panel] {
+    position: absolute;
+    z-index: var(--above);
+    transform: translateY(var(--component-border-width));
+    padding: var(--component-padding);
+    background-color: var(--white);
+    box-shadow: var(--component-shadow);
+}
+
+.filtersRoot [data-reach-disclosure-button] {
+    background-color: var(--accent-200) !important;
+    color: var(--white) !important;
+    border-color: transparent !important;
+}
+
+.listItemRoot [dangerousselector-tag] {
+    margin-left: var(--component-margin);
+}
+
+.list {
+    background: var(--component-bg);
+    box-shadow: var(--component-shadow);
+    border: var(--component-border-width) solid var(--component-border);
+}
+
+.list .listItem + .listItem {
+    border-top: 1px solid var(--component-border);
+}
