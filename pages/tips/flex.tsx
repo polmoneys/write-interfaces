@@ -35,7 +35,9 @@ export default function Flex() {
             <SpacerSection />
             <Code children={DemoCode} />
             <SpacerSection />
-            <Title>ColToRow and flex order.</Title>
+            <Title>
+                ColToRow and flex order helps with <b>ratio</b>.
+            </Title>
             <SpacerSection />
             <Grid size="510px" gap=".5em">
                 <Card>

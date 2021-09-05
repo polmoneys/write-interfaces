@@ -9,7 +9,7 @@ export default function Toolbar() {
         <Page title={'Packages: Toolbar'}>
             <SpacerSection />
             <Title>
-                Tap outside the menu or press <kbd className={styles.kbd}>c</kbd> or <kbd className={styles.kbd}>esc</kbd> on your keyboard to close it.
+                Tap outside the menu or press <kbd className={styles.kbd}>c</kbd> / <kbd className={styles.kbd}>esc</kbd> on your keyboard to close it.
             </Title>
             <SpacerSection />
             <MenuToolBar groups={menuItems} />

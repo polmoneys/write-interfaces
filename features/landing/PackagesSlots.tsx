@@ -53,7 +53,7 @@ const PackagesSlots = (props: Props) => {
             onTap: () => router.push('/packages/forms'),
 
             x: [1, 5],
-            y: [1, 7],
+            y: [1, 6],
         },
         {
             id: '2',

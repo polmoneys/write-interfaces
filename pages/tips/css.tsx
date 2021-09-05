@@ -6,7 +6,9 @@ export default function Css() {
     return (
         <Page className={styles.root} title={'About: CSS'}>
             <SpacerSection />
-            <Title> Cascade is a feature. </Title>
+            <Title>
+                <b>Cascade</b> is a feature.{' '}
+            </Title>
             <SpacerSection />
             <HelveticaNeue>Design tokens with css custom properties. Theme (light/dark mode) management follows the same strategy. </HelveticaNeue>
             <SpacerParagraph />

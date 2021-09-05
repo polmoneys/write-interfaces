@@ -23,7 +23,7 @@ export default function Stat() {
         <Page title={'Composed: Stat'}>
             <SpacerSection />
             <Title>
-                <b>Stats</b> with Paint.
+                Stats with <b>Paint</b>.
             </Title>
 
             <SpacerSection />

@@ -6,7 +6,9 @@ export default function FileStructure() {
     return (
         <Page className={styles.root} title={'About: file & Folders'}>
             <SpacerSection />
-            <Title>Intentional imports.</Title>
+            <Title>
+                <b>Intentional</b> imports.
+            </Title>
             <SpacerSection />
             <Code children={DemoCode} />
             <SpacerParagraph />

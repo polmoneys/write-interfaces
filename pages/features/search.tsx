@@ -82,7 +82,9 @@ export default function Advanced() {
     return (
         <Page title={'Composed: Search'}>
             <SpacerSection />
-            <Title>A client search feature</Title>
+            <Title>
+                A client <b>search</b> feature
+            </Title>
             <SpacerSection />
 
             <ColToRow className={styles.toolbar}>

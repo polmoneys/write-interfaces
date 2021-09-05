@@ -6,7 +6,9 @@ export default function ComponentTip() {
     return (
         <Page className={styles.root} title={'About: Components'}>
             <SpacerSection />
-            <Title>Components.</Title>
+            <Title>
+                Component <b>anatomy</b>.
+            </Title>
             <SpacerSection />
             <Code children={AnatomyApi} />
             <SpacerParagraph />

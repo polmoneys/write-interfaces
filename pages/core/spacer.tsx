@@ -6,10 +6,12 @@ export default function Spacer() {
     return (
         <Page className={styles.root} title={'Core: Spacer'}>
             <SpacerSection />
-            <Title>🔥 take: spacing belong to markup</Title>
+            <Title>
+                🔥 take: spacing should be <b>written</b> along components.
+            </Title>
             <SpacerSection />
             <HelveticaNeue className="self-center">
-                Whitespace and flow is so important I'd rather be explicit about it, and reusable by composing some variants.
+                Whitespace and flow is so important I'd rather be explicit about it. It follows the reusability principle of being open to composing variants.
             </HelveticaNeue>
             <SpacerParagraph />
             <Code children={DemoCode} />
