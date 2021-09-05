@@ -32,7 +32,7 @@ export default function Layout() {
         },
     }));
     return (
-        <Page className={styles.root} title={'Core: Layout'}>
+        <Page className={styles.root} title={'Core: Grid'}>
             <SpacerSection />
             <Title>
                 <b>Stretchable</b> with minimum viable size.

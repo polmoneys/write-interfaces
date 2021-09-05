@@ -4,7 +4,7 @@ import styles from '@/styles/pages/Content.module.css';
 
 export default function Css() {
     return (
-        <Page className={styles.root} title={'Concepts: CSS'}>
+        <Page className={styles.root} title={'About: CSS'}>
             <SpacerSection />
             <Title> Cascade is a feature. </Title>
             <SpacerSection />

@@ -4,7 +4,7 @@ import styles from '@/styles/pages/Content.module.css';
 
 export default function ComponentTip() {
     return (
-        <Page className={styles.root} title={'Core: Slots'}>
+        <Page className={styles.root} title={'About: Components'}>
             <SpacerSection />
             <Title>Components.</Title>
             <SpacerSection />

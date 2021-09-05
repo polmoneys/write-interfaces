@@ -94,7 +94,7 @@ const CoreSlots = (props: Props) => {
                 }}
             >
                 <Row className="main-margin">
-                    <Tag>BASE FOR ANY INTERFACE</Tag>
+                    <Tag>INTERACTIVE DEMOS</Tag>
                     <Tag fill="var(--error-000)" color="var(--error-200)">
                         CORE
                     </Tag>

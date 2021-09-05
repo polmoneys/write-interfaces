@@ -4,7 +4,7 @@ import styles from '@/styles/pages/Content.module.css';
 
 export default function Inspiration() {
     return (
-        <Page className={styles.root} title={'Ethos'}>
+        <Page className={styles.root} title={'About: Ethos'}>
             <SpacerSection />
             <Title>
                 React components inspired by <HelveticaNeueBold as="b">Swedish Grace</HelveticaNeueBold>.

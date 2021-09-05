@@ -42,7 +42,7 @@ export default function Content() {
     }, [values.color]);
 
     return (
-        <Page className={styles.root} title={'Hi'}>
+        <Page className={styles.root} title={'Core: Cards'}>
             <SpacerSection />
             <Title>
                 <b>Interactive</b>, change grid width.

@@ -1,9 +1,8 @@
 import { ChangeEvent, Fragment, useState } from 'react';
-import { chain } from '@react-aria/utils';
 import { Col, Row, Spacer, Grid } from '@/core';
 import * as yup from 'yup';
 import { List, Select, Switch, AutoComplete, DropDown, DropDownItem, Tag, CheckBox, Button, Radio, Icon, Link, Timer, useForm } from '@/packages';
-import { HelveticaNeue, RadioPillAccent, RadioTileAccent, ButtonAccent, ButtonNemesis, ButtonError, ButtonPill, Page, Title } from '@/composed';
+import { HelveticaNeue, RadioPillAccent, RadioTileAccent, SpacerSection, Page, Title } from '@/composed';
 import { is } from '@/utils/is';
 import styles from '@/styles/pages/Forms.module.css';
 
@@ -87,7 +86,7 @@ export default function Forms() {
 
     const onStatusMultipleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        if (value === 'none') {
+        if (is(value, 'none')) {
             setStatusMultiple([]);
         } else {
             setStatusMultiple((prev) => [...prev, value as 'draft' | 'live' | 'unknown']);
@@ -96,13 +95,13 @@ export default function Forms() {
 
     return (
         <Page title={'Packages: Forms'}>
-            <Spacer space={34} />
+            <SpacerSection />
             <Title>
                 No-state <b>forms</b> as alternative to bloated libraries.
             </Title>
-            <Spacer space={34} />
+            <SpacerSection />
             {form}
-            <Spacer space={34} />
+            <SpacerSection />
             <Grid>
                 <div>
                     <Row gap="8px">
@@ -140,7 +139,7 @@ export default function Forms() {
                 </div>
             </Grid>
 
-            <Spacer space={34} />
+            <SpacerSection />
             <Grid>
                 <div>
                     <Radio
@@ -209,12 +208,12 @@ export default function Forms() {
                 </Col>
             </Grid>
 
-            <Spacer space={34} />
+            <SpacerSection />
 
             <Title>
                 Make it easy to do complex <b>things</b>.
             </Title>
-            <Spacer space={34} />
+            <SpacerSection />
             <Row className="main-around cross-center">
                 <Tag>IMPORTANT</Tag>
                 <Tag variant="traced">IMPORTANT</Tag>
@@ -276,17 +275,17 @@ export default function Forms() {
                     onSelect={(choice) => console.log(choice)}
                 />
             </Grid>
-            <Spacer space={34} />
+            <SpacerSection />
 
             <Title>
                 If you can, <b>delight</b>.
             </Title>
-            <Spacer space={34} />
+            <SpacerSection />
 
             <Col className="cross-center">
                 <Switch label="Switch view" onCb={() => console.log(' on cb')} offCb={() => console.log(' off cb')} />
             </Col>
-            <Spacer space={34} />
+            <SpacerSection />
         </Page>
     );
 }

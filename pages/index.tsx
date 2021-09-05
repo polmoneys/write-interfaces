@@ -1,9 +1,8 @@
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { Row, Spacer, Col, Grid, GridFlex } from '@/core/';
 import { Title, Page, HelveticaNeue, HelveticaNeueBold, SpacerParagraph, SpacerSection } from '@/composed';
-import { Button, Link, Tag } from '@/packages';
+import { Button, Link } from '@/packages';
 import { useBrowserTab } from '@/hooks';
-import Code from '@/features/tutorial/Code';
 import CoreSlots from '@/features/landing/CoreSlots';
 import ComposedSlots from '@/features/landing/ComposedSlots';
 import PackagesSlots from '@/features/landing/PackagesSlots';
@@ -25,7 +24,7 @@ export default function Home() {
     });
 
     return (
-        <Page className={styles.root} title={'Hi'}>
+        <Page className={styles.root} title={'How to write interfaces. Examples in React.'}>
             <SpacerSection />
             <Title>
                 <b>Write</b> interfaces with React.

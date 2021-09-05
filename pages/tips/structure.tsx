@@ -4,7 +4,7 @@ import styles from '@/styles/pages/Content.module.css';
 
 export default function FileStructure() {
     return (
-        <Page className={styles.root} title={'TIPS: file structure'}>
+        <Page className={styles.root} title={'About: file & Folders'}>
             <SpacerSection />
             <Title>Intentional imports.</Title>
             <SpacerSection />

@@ -3,7 +3,7 @@ import Code from '@/features/tutorial/Code';
 
 export default function Font() {
     return (
-        <Page title={'Packages: Tappables'}>
+        <Page title={'Packages: Font'}>
             <SpacerSection />
             <Title>
                 <b>Font</b> should be composed.

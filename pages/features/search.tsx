@@ -80,7 +80,7 @@ export default function Advanced() {
         setActiveSorter(initialSortState);
     };
     return (
-        <Page title={'Composed: A client search feature'}>
+        <Page title={'Composed: Search'}>
             <SpacerSection />
             <Title>A client search feature</Title>
             <SpacerSection />

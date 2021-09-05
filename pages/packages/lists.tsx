@@ -15,7 +15,7 @@ export default function Lists() {
     const [pageActive, setPageActive] = useState(1);
     const handlePagination = (next) => setPageActive(next);
     return (
-        <Page title={'Packages: Tappables'}>
+        <Page title={'Packages: List'}>
             <SpacerSection />
             <Title>
                 <b>Lists</b> chunk content into units.

@@ -7,7 +7,7 @@ import styles from '@/styles/pages/Tabs.module.css';
 
 export default function Font() {
     return (
-        <Page title={'Packages: Tappables'}>
+        <Page title={'Packages: Tabs'}>
             <SpacerSection />
             <Title>
                 <b>Tabs</b> fake the presence of content.

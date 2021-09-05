@@ -4,7 +4,7 @@ import styles from '@/styles/pages/Content.module.css';
 
 export default function Spacer() {
     return (
-        <Page className={styles.root} title={'Core: Layout'}>
+        <Page className={styles.root} title={'Core: Spacer'}>
             <SpacerSection />
             <Title>🔥 take: spacing belong to markup</Title>
             <SpacerSection />
