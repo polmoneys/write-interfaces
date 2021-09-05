@@ -46,6 +46,15 @@ export default function Home() {
             <SpacerSection />
             <Col className={styles.content}>
                 <SpacerParagraph />
+                <HelveticaNeue>
+                    Code at github{' '}
+                    <a href="https://github.com/polmoneys/write-interfaces">
+                        <b>repository</b>
+                    </a>
+                    .
+                </HelveticaNeue>
+                <SpacerParagraph />
+
                 <HelveticaNeueBold> @/core </HelveticaNeueBold>
                 <SpacerParagraph />
                 <GridFlex gap="1em" as="nav">
