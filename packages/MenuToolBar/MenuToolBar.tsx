@@ -1,7 +1,7 @@
 /**
  *
  * 2021. Pol Moneys
- * MenuToolBar 0.1.0
+ * MenuToolBar 0.2.0
  * EXPERIMENTAL
  * Feedback at polmoneys on github
  *
@@ -30,7 +30,7 @@ function Menu(props: Props) {
         <div className={styles.root}>
             <MenuProvider>
                 {Object.entries(groups).map(([value, state]) => (
-                    <Fragment>
+                    <Fragment key={value}>
                         <Tag className={styles.label}>{value.toUpperCase()}</Tag>
                         <ul className={styles.list} key={value}>
                             {state?.map((item: MenuItemProps) => (
@@ -47,7 +47,7 @@ function Menu(props: Props) {
 export default Menu;
 
 interface MenuItemProps {
-    id: number;
+    id: string;
     disabled?: boolean;
     icon?: IconVariants;
     label: string | HTMLSpanElement;
@@ -84,7 +84,7 @@ const MenuItem = (props: MenuItemProps) => {
     });
 
     return (
-        <li className={styles.item} key={id}>
+        <li className={styles.item}>
             <Button
                 variant="ghost"
                 disabled={disabled}
@@ -99,7 +99,7 @@ const MenuItem = (props: MenuItemProps) => {
                 <ul className={styles.subList} {...keyboardProps} ref={ref}>
                     <FocusScope contain restoreFocus autoFocus>
                         {children?.map((child) => (
-                            <MenuItem key={child.id} {...child} />
+                            <MenuItem {...child} key={child.id} />
                         ))}
                     </FocusScope>
                 </ul>
