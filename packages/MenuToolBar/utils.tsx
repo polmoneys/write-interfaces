@@ -1,17 +1,17 @@
 import { useContext, createContext, ReactNode, useState, useEffect } from 'react';
 
-type ContextState = [State, (id: number, group: string) => void];
+type ContextState = [State, (id: string, group: string) => void];
 const MenuContext = createContext<ContextState>(null);
 
 type ContextProviderProps = { children: ReactNode };
-type State = Array<{ id: number; group: string }>;
+type State = Array<{ id: string; group: string }>;
 
 const initialState = [];
 const maxOpenListsPerGroup = 3;
 
 export const MenuProvider = ({ children }: ContextProviderProps) => {
     const [state, dispatch] = useState<State>(initialState);
-    const report = (incoming: number, group: string) => {
+    const report = (incoming: string, group: string) => {
         const isOpen = state.find((item) => item.id === incoming);
 
         const distinctGroups = state?.reduce((distinct, group) => (distinct.indexOf(group) !== -1 ? distinct : [...distinct, group]), []);
