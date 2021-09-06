@@ -2,22 +2,38 @@
     --menu-tappable-offset: 2.8rem;
     position: relative;
 }
+
+/* MAGIC */
+.root:focus {
+    outline: none;
+}
+
+.root:focus-within .menu,
+.button:focus ~ .menu {
+    width: 100%;
+    transform: scaleX(1) scaleY(1);
+    transform-origin: top;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 100ms;
+    opacity: 1;
+}
+
+.root,
 .button,
 .menu,
 .menuItems,
-.item {
+.item,
+.root [role='menuitem'] {
     width: 100%;
 }
-.button ~ .menu {
+.menu {
     width: 100%;
     transform: scaleX(0) scaleY(0);
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     transition-duration: 75ms;
+    transform-origin: top;
     opacity: 0;
     top: var(--menu-tappable-offset);
-}
-
-.menu {
     position: absolute;
     box-shadow: var(--component-shadow-soft);
     z-index: var(--above);
@@ -27,25 +43,12 @@
 .menuItems {
     display: flex;
     flex-direction: column;
-    width: max-content;
 }
 
 .item {
     justify-content: space-between;
 }
 
-.menuItems {
-    /* padding: var(--component-padding); */
-    width: 100% !important;
-}
 .button {
     min-height: var(--menu-tappable-offset);
-}
-.button ~ .menu:focus-within,
-.button:focus ~ .menu {
-    width: 100%;
-    transform: scaleX(1) scaleY(1);
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    transition-duration: 100ms;
-    opacity: 1;
 }

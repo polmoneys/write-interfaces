@@ -1,8 +1,8 @@
 /**
  *
  * 2021. Pol Moneys
- * MenuPopUp 0.1.0
- * BUGGY on Safari
+ * MenuPopUp 0.2.0
+ * BUGGY: root needs tabIndex={-1} to work in Safari.
  * Feedback at polmoneys on github
  *
  */
@@ -44,8 +44,8 @@ function MenuPopUp(props: Props) {
     const rootStyles = clxs(styles.root, className);
 
     return (
-        <div className={rootStyles}>
-            <button id={id} className={styles.button} aria-label="User menu" aria-haspopup="true">
+        <div className={rootStyles} tabIndex={-1}>
+            <button id={id} className={styles.button} aria-label="Menu" aria-haspopup="true">
                 {label}
             </button>
             <div className={styles.menu}>
