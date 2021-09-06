@@ -18,7 +18,6 @@
 
 .menupop,
 .menupopB {
-    width: 100%;
     max-width: 190px;
 }
 
@@ -33,9 +32,6 @@
     background-color: var(--error-200) !important;
 }
 
-.menupop [role='menuitem'] {
-    width: 100%;
-}
 .menupop [role='menuitem']:hover {
     filter: brightness(1.2) !important;
 }
@@ -52,7 +48,4 @@
 .menupopB > button + div {
     color: var(--white) !important;
     background-color: var(--accent-200) !important;
-}
-.menupopB [role='menuitem'] {
-    width: 100%;
 }

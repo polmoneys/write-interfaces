@@ -21,9 +21,7 @@ export default function Toolbar() {
                     EXPERIMENTAL
                 </Tag>
                 <SpacerParagraph show="portrait" />
-                <Tag variant="traced" fill="var(--accent-000)" color="var(--accent-200)">
-                    NO SAFARI
-                </Tag>
+
                 <MenuPopUp
                     id="test"
                     label="The future"
@@ -66,7 +64,7 @@ export default function Toolbar() {
                         },
                     ]}
                 />
-            </ColToRow>{' '}
+            </ColToRow>
             <Spacer space={134} />
         </Page>
     );
