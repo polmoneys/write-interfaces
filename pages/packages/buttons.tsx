@@ -44,10 +44,10 @@ export default function Buttons() {
                     Me too
                 </Link>
                 <Link to="" start={<Icon variant="heart" />} variant="default">
-                    Link-like button
+                    Me too
                 </Link>
                 <ButtonPill onTap={() => ({})} start={<Icon variant="heart" />}>
-                    Pill button
+                    Pill
                 </ButtonPill>
                 <Button
                     onTap={() => {

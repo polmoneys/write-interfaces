@@ -11,7 +11,7 @@ const items = rangify(8);
 
 export default function Flex() {
     return (
-        <Page className={styles.root} title={'About: Flexbox'}>
+        <Page title={'About: Flexbox'}>
             <SpacerSection />
             <Title>
                 <b>Push</b> items with margins.

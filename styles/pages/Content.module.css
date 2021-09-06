@@ -31,13 +31,12 @@
 }
 
 .flexPush {
-    width: min(600px, 80%);
+    width: 100%;
+    max-width: var(--optimal-readability);
     background-color: var(--component-bg);
     border: var(--component-border-width) solid var(--component-border);
     padding: var(--component-padding);
     box-shadow: var(--component-shadow);
-    margin-left: auto;
-    margin-right: auto;
     min-height: min(20vh, 300px);
     justify-content: center;
     align-items: center;

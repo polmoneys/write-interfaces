@@ -83,7 +83,7 @@ export default function Advanced() {
         <Page title={'Composed: Search'}>
             <SpacerSection />
             <Title>
-                A client <b>search</b> feature
+                A client <b>search</b> feature.
             </Title>
             <SpacerSection />
 

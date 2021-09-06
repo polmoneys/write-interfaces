@@ -1,10 +1,9 @@
 import { HelveticaNeue, HelveticaNeueBold, Page, Title, SpacerParagraph, SpacerSection, ButtonAccent } from '@/composed';
 import Code from '@/features/tutorial/Code';
-import styles from '@/styles/pages/Content.module.css';
 
 export default function ComponentTip() {
     return (
-        <Page className={styles.root} title={'About: Components'}>
+        <Page title={'About: Components'}>
             <SpacerSection />
             <Title>
                 Component <b>anatomy</b>.
@@ -54,17 +53,17 @@ interface DefaultProps {
     discouragedStyle?: CSSProperties;
 }`;
 
-const AnatomyApi = `// Anatomy of a component
+const AnatomyApi = `// Children-driven component
 <Component prop={value} prop={<ComponentB/>} as='html tag' className={styles.root}>
     <Children/>
 </Component>
 
-// Anatomy of a data-driven component
+// Data-driven component
 const children = [<Children/>,<Children/>];
 <Component items={children} prop={value} className="utility-class"/>
 `;
 
-const AnatomyRatio = `// access ratio with hook
+const AnatomyRatio = `// Access ratio with hook
 import {useBreakpoint} from '@/hooks';
 
 const Component = (props:Props) => {
@@ -73,7 +72,7 @@ const Component = (props:Props) => {
 }
 `;
 
-const AnatomyStyles = `// style as you feel like
+const AnatomyStyles = `// Component styles
 import {clxs} from '@/utils/classname';
 import styles from 'Component.module.css';
 

@@ -1,5 +1,9 @@
 .slotsContainer {
     position: relative;
+    filter: hue-rotate(90deg);
+}
+.slotsContainer:hover {
+    filter: none;
 }
 .slots {
     width: 100%;

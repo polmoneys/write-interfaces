@@ -11,8 +11,6 @@ const Code = ({ children }) => {
                 style={{
                     width: '100%',
                     maxWidth: '750px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
                     border: 'var(--component-border-width) solid currentColor',
                     boxShadow: 'var(--component-shadow)',
                 }}

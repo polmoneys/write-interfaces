@@ -7,7 +7,7 @@ export default function Spacer() {
         <Page className={styles.root} title={'Core: Spacer'}>
             <SpacerSection />
             <Title>
-                🔥 take: spacing should be <b>written</b> along components.
+                🔥 take: spacing belongs to <b>markup</b>.
             </Title>
             <SpacerSection />
             <HelveticaNeue className="self-center">
@@ -21,6 +21,7 @@ export default function Spacer() {
 }
 
 const DemoCode = `import {Spacer} from'@/core';
+
 // Default min-height, aria-hidden="true"
 <Spacer/>
 

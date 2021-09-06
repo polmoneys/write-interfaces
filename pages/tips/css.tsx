@@ -1,10 +1,9 @@
 import { HelveticaNeue, Page, Title, SpacerParagraph, SpacerSection, ButtonAccent } from '@/composed';
 import Code from '@/features/tutorial/Code';
-import styles from '@/styles/pages/Content.module.css';
 
 export default function Css() {
     return (
-        <Page className={styles.root} title={'About: CSS'}>
+        <Page title={'About: CSS'}>
             <SpacerSection />
             <Title>
                 <b>Cascade</b> is a feature.{' '}

@@ -15,15 +15,17 @@ export default function Font() {
     );
 }
 
-const DemoCode = `import Font, { Props } from '@/packages/Font/Font';
+const DemoCode = `// @/composed/Typography/Font
+import Font, { Props } from '@/packages/Font/Font';
 import styles from './Font.module.css';
-// Compose variants
+
+// Variants
 const HelveticaNeue = (props: Props) => <Font {...props} compose={styles.helveticaNeue} />;
 const HelveticaNeueMedium = (props: Props) => <Font {...props} compose={styles.medium} />;
 const HelveticaNeueBold = (props: Props) => <Font {...props} compose={styles.bold} />;
 const HelveticaNeueThin = (props: Props) => <Font {...props} compose={styles.thin} />;
 const Grotesk = (props: Props) => <Font {...props} compose={styles.grotesk} />;
 
-// Use variant
+// Use them
 import {HelveticaNeue} from'@/composed';
 <HelveticaNeue> Yup </HelveticaNeue>`;
