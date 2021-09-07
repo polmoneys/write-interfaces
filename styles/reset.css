@@ -58,6 +58,10 @@ h2 > span {
     font-size: inherit !important;
 }
 
+:is(button, h1, h2, h3)::first-letter {
+    text-transform: uppercase;
+}
+
 /* Add offset to underline, see also https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration */
 a:not([class]),
 a:not([class]):visited,
