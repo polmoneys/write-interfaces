@@ -26,15 +26,13 @@
     color: var(--error-200) !important;
     outline: var(--component-border-width) solid var(--error-200) !important;
 }
-/* 
-@media (prefers-color-scheme: dark) {
+
+/* @media (prefers-color-scheme: dark) {
     .accent {
-        background-color: var(--accent-000) !important;
-        color: var(--accent-200) !important;
+        filter: hue-rotate(90deg);
     }
 
-    .nemesis {
-        background-color: var(--white) !important;
-        color: var(--gray-200) !important;
+    .error {
+        filter: hue-rotate(90deg);
     }
 } */

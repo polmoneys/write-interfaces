@@ -1,4 +1,5 @@
 import BadgeShape from './Badges/BadgeShape';
+import BadgePulseError from './Badges/BadgePulseError';
 import ButtonAccent from './Buttons/ButtonAccent';
 import ButtonError from './Buttons/ButtonError';
 import ButtonNemesis from './Buttons/ButtonNemesis';
@@ -20,6 +21,7 @@ import Title from './Typography/Title';
 
 export {
     BadgeShape,
+    BadgePulseError,
     ButtonAccent,
     ButtonError,
     ButtonNemesis,
