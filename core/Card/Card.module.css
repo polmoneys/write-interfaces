@@ -1,7 +1,7 @@
 .ratio {
     --card-ratio: 16/9;
     position: relative;
-    padding-top: calc((1 / (var(--card-ratio))) * 100%);
+    padding-top: calc((1 / (var(--card-ratio))) * 100%) !important;
 }
 
 @supports (aspect-ratio: 1) {
