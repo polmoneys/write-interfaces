@@ -4,7 +4,7 @@ body {
     font-size: var(--base-font-size);
     font-weight: 400;
     line-height: var(--font-height);
-    line-height: calc(0.25rem + 1em);
+    line-height: calc(0.35rem + 1em);
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     text-rendering: optimizeLegibility;
 }
