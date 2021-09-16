@@ -59,9 +59,11 @@ export default function Content() {
             <Grid size={gridSize} gap="2em">
                 <Card ratio="square">
                     <Image layout="fill" objectFit="cover" alt=" " src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        1/1 Square
-                    </HelveticaNeue>
+                    <Col className="main-end self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            1/1 Square
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
                 <Card ratio="classic">
                     <Image
@@ -71,21 +73,27 @@ export default function Content() {
                         alt=" "
                         src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg"
                     />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        4/3 Classic{' '}
-                    </HelveticaNeue>
+                    <Col className="main-end self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            4/3 Classic{' '}
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
                 <Card ratio="portrait">
                     <Image layout="fill" objectFit="cover" alt=" " src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        9/16 Portrait{' '}
-                    </HelveticaNeue>
+                    <Col className="main-end self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            9/16 Portrait{' '}
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
                 <Card ratio="landscape">
                     <Image layout="fill" objectFit="cover" alt=" " src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        16/9 Landscape{' '}
-                    </HelveticaNeue>
+                    <Col className="main-end self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            16/9 Landscape{' '}
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
             </Grid>
 
@@ -106,6 +114,7 @@ export default function Content() {
                             <Tag>AUTHOR IS NONE </Tag>
                         </Col>
                     </Row>
+                    <Spacer />
                     <HelveticaNeueBold as="h2" size={28} id="label-test-h2">
                         {LoremMD}
                     </HelveticaNeueBold>
@@ -185,9 +194,11 @@ export default function Content() {
                         alt=" "
                         src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg"
                     />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        Tappable{' '}
-                    </HelveticaNeue>
+                    <Col className="main-center cross-center self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            Tappable{' '}
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
                 <Card ratio="square" onStartHover={() => console.log('hoverStart')} onEndHover={() => console.log('hoverEnd')}>
                     <Image
@@ -197,19 +208,24 @@ export default function Content() {
                         alt=" "
                         src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg"
                     />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        Hoverable (console){' '}
-                    </HelveticaNeue>
+                    <Col className="main-center cross-center self">
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            Hoverable (console){' '}
+                        </HelveticaNeue>
+                    </Col>
                 </Card>
-                <Card
-                    ratio="square"
-                    gradient={{ position: is(position, 'top') ? 'start' : 'end', color: _color }}
-                    className={is(position, 'bottom') && 'main-end'}
-                >
+                <Card ratio="square" gradient={{ position: is(position, 'top') ? 'start' : 'end', color: _color }}>
                     <Image layout="fill" objectFit="cover" alt=" " src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" />
-                    <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
-                        With {is(position, 'top') ? 'top' : 'bottom'} gradient{' '}
-                    </HelveticaNeue>
+                    <Pin
+                        xy={{
+                            top: is(position, 'top') ? '1em' : 'auto',
+                            bottom: is(position, 'bottom') ? '1em' : 'auto',
+                        }}
+                    >
+                        <HelveticaNeue as="h2" size={24} dangerousColor="var(--white)">
+                            With {is(position, 'top') ? 'top' : 'bottom'} gradient{' '}
+                        </HelveticaNeue>
+                    </Pin>
                 </Card>
             </Grid>
             <SpacerSection />
