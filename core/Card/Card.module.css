@@ -1,16 +1,3 @@
-.ratio {
-    --card-ratio: 16/9;
-    position: relative;
-    padding-top: calc((1 / (var(--card-ratio))) * 100%) !important;
-}
-
-@supports (aspect-ratio: 1) {
-    .ratio {
-        aspect-ratio: var(--card-ratio);
-        padding-top: initial;
-    }
-}
-
 .root {
     --card-bg-gradient: rgba(0, 0, 0, 0.5);
     padding: var(--component-padding);
@@ -21,6 +8,20 @@
     word-break: break-word;
     hyphens: auto;
 }
+
+.ratio {
+    --card-ratio: 16/9;
+    position: relative;
+    padding-top: calc((1 / (var(--card-ratio))) * 100%);
+}
+
+@supports (aspect-ratio: 1) {
+    .ratio {
+        aspect-ratio: var(--card-ratio);
+        padding-top: initial;
+    }
+}
+
 .root > div:first-child {
     z-index: var(--defaut-z);
 }
