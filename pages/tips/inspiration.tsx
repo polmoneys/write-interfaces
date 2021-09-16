@@ -25,8 +25,8 @@ export default function Inspiration() {
             </HelveticaNeue>
             <SpacerParagraph />
             <HelveticaNeue>
-                We write interfaces <HelveticaNeueBold as="b">not because it's easy</HelveticaNeueBold> but because we need them. An interface lives out in the
-                world serving real people do things.
+                We write interfaces <HelveticaNeueBold as="b">not because it's easy</HelveticaNeueBold> but because we need them. Like stories. An interface
+                lives out in the world serving real people do things.
             </HelveticaNeue>
             <SpacerSection />
         </Page>

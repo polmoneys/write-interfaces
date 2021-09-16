@@ -16,10 +16,10 @@ export default function Css() {
             <HelveticaNeue>You can override the cascade with 'unset'.</HelveticaNeue>
             <SpacerParagraph />
             <Code children={DemoCode} />
-            {/* <SpacerParagraph />
-            <HelveticaNeue>Some favourite utility classes.</HelveticaNeue>
             <SpacerParagraph />
-            <Code children={AnatomyUtilities} /> */}
+            <HelveticaNeue>One of my top 5 css one-liners.</HelveticaNeue>
+            <SpacerParagraph />
+            <Code children={AnatomyUtilities} />
 
             <SpacerSection />
         </Page>
@@ -85,11 +85,11 @@ const DemoCode = `.root p {
     margin: unset;
 }`;
 
-// const AnatomyUtilities = `.root p {
-//     margin-right: auto;
-//     margin-left: auto;
-// }
+const AnatomyUtilities = `.color {
+    color: whatever;
+}
 
-// .root footer p {
-//     margin: unset;
-// }`;
+.color:hover {
+    filter:hue-rotate(90deg);
+}
+`;

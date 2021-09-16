@@ -9,7 +9,9 @@ export default function FileStructure() {
                 <b>Intentional</b> imports.
             </Title>
             <SpacerSection />
-            <HelveticaNeue>Location as 'roles/access' is a pattern I'm exploring.</HelveticaNeue>
+            <HelveticaNeue>
+                Location as 'roles/access' is a pattern I'm exploring. It means that some 'folders' require more knowledge of the project than others to modify.
+            </HelveticaNeue>
             <SpacerParagraph />
 
             <Code children={DemoCode} />
