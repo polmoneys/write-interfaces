@@ -80,6 +80,7 @@ export default function Home() {
                     <Link to="/packages/buttons">Buttons</Link>
                     <Link to="/packages/stat">Stats</Link>
                     <Link to="/features/search">Search</Link>
+                    <Link to="/features/delight">Delights</Link>
                 </GridFlex>
                 <SpacerParagraph />
                 <HelveticaNeueBold> About </HelveticaNeueBold>
