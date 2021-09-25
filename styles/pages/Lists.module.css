@@ -1,0 +1,7 @@
+.selected {
+    opacity: 1 !important;
+}
+
+.idle {
+    opacity: 0.6 !important;
+}

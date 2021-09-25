@@ -1,5 +1,5 @@
 .offSplitMain {
-    background-color: var(--component-bg-light);
+    background-color: var(--component-bg-light) !important;
 }
 .onSplitMain {
     background-color: var(--accent-000) !important;
@@ -7,9 +7,15 @@
 }
 
 .offSplitSecondary {
-    background-color: var(--component-bg-light);
+    background-color: var(--component-bg-light) !important;
 }
 .onSplitSecondary {
     background-color: var(--error-000) !important;
     color: var(--error-200) !important;
+}
+
+.active {
+}
+.idle {
+    opacity: 0.4 !important;
 }

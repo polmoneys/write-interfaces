@@ -1,17 +1,47 @@
 import { Fragment, useState } from 'react';
 import { chain } from '@react-aria/utils';
 import { Grid } from '@/core';
+import { useSelectable } from '@/hooks';
 import { LoadingStates } from '@/packages/types';
 import { Button, ButtonGroup, ButtonInGroup, ButtonSplit, Icon, Link, Timer } from '@/packages';
 import { ButtonAccent, ButtonNemesis, ButtonError, ButtonPill, Page, Title, SpacerSection } from '@/composed';
 import { is } from '@/utils/is';
 import Code from '@/features/tutorial/Code';
-
 import styles from '@/styles/pages/Buttons.module.css';
+
+const listItems = [
+    { id: 1, label: '0%', value: 'a' },
+    { id: 2, label: '25%', value: 'b' },
+    { id: 3, label: '50%', value: 'c' },
+    { id: 4, label: '75%', value: 'd' },
+    { id: 5, label: '100%', value: 'e' },
+];
+
+const fakeSplitItems = [
+    {
+        id: 0,
+        children: 'Save',
+        start: <Icon variant="heart" />,
+        onClassName: styles.onSplitMain,
+        offClassName: styles.offSplitMain,
+    },
+    {
+        id: 1,
+        children: <Icon variant="down" />,
+        onClassName: styles.onSplitSecondary,
+        offClassName: styles.offSplitSecondary,
+    },
+];
 
 export default function Buttons() {
     const [loadingState, loadingActions] = useState<LoadingStates>('idle');
+    const [selection, { updateSelection }] = useSelectable(listItems, 1, true, true);
 
+    const [selectionSplit, { updateSelection: updateSelectionSplit }] = useSelectable(fakeSplitItems);
+
+    const handleChange = (index: number) => {
+        updateSelection(index);
+    };
     return (
         <Page title={'Packages: Tappables'}>
             <SpacerSection />
@@ -67,90 +97,33 @@ export default function Buttons() {
             </Title>
             <SpacerSection />
 
+            <SpacerSection />
             <Grid size="290px">
                 <ButtonGroup>
-                    {({ active, setActive }) => {
-                        return (
-                            <Fragment>
-                                <ButtonInGroup
-                                    className={active && is(active, 1) ? styles.active : styles.idle}
-                                    onTap={() => chain(console.log(1), setActive(1))}
-                                >
-                                    0%
-                                </ButtonInGroup>
-                                <ButtonInGroup
-                                    className={active && is(active, 2) ? styles.active : styles.idle}
-                                    onTap={() => chain(console.log(2), setActive(2))}
-                                >
-                                    25%
-                                </ButtonInGroup>
-                                <ButtonInGroup
-                                    className={active && is(active, 3) ? styles.active : styles.idle}
-                                    onTap={() => chain(console.log(3), setActive(3))}
-                                >
-                                    50%
-                                </ButtonInGroup>
-                                <ButtonInGroup
-                                    className={active && is(active, 4) ? styles.active : styles.idle}
-                                    onTap={() => chain(console.log(4), setActive(4))}
-                                >
-                                    75%
-                                </ButtonInGroup>
-                                <ButtonInGroup
-                                    className={active && is(active, 5) ? styles.active : styles.idle}
-                                    onTap={() => chain(console.log(5), setActive(5))}
-                                >
-                                    100%
-                                </ButtonInGroup>
-                            </Fragment>
-                        );
-                    }}
+                    {listItems.map((item) => (
+                        <ButtonInGroup key={item.id} className={selection.includes(item.id) ? styles.active : styles.idle} onTap={() => handleChange(item.id)}>
+                            {item.label}
+                        </ButtonInGroup>
+                    ))}
                 </ButtonGroup>
 
-                <ButtonSplit items={fakeSplitItems} />
+                <ButtonSplit items={fakeSplitItems} selection={selectionSplit} onChange={(id) => updateSelectionSplit(Number(id))} />
 
                 <ButtonGroup direction="vertical">
-                    {({ active, setActive }) => {
-                        return (
-                            <Fragment>
-                                <ButtonInGroup className={active && is(active, 1) ? styles.active : styles.idle} onTap={() => setActive(1)}>
-                                    0%
-                                </ButtonInGroup>
-                                <ButtonInGroup className={active && is(active, 2) ? styles.active : styles.idle} onTap={() => setActive(2)}>
-                                    50%
-                                </ButtonInGroup>
-                                <ButtonInGroup className={active && is(active, 3) ? styles.active : styles.idle} onTap={() => setActive(3)}>
-                                    100%
-                                </ButtonInGroup>
-                            </Fragment>
-                        );
-                    }}
+                    {listItems.map((item) => (
+                        <ButtonInGroup key={item.id} className={selection.includes(item.id) ? styles.active : styles.idle} onTap={() => handleChange(item.id)}>
+                            {item.label}
+                        </ButtonInGroup>
+                    ))}
                 </ButtonGroup>
             </Grid>
             <SpacerSection />
+
             <Code children={DemoCode} />
             <SpacerSection />
         </Page>
     );
 }
-
-const fakeSplitItems = [
-    {
-        id: 0,
-        children: 'Save',
-        start: <Icon variant="heart" />,
-        onTap: () => console.log('Main action'),
-        onClassName: styles.onSplitMain,
-        offClassName: styles.offSplitMain,
-    },
-    {
-        id: 1,
-        children: <Icon variant="down" />,
-        onTap: () => console.log('Secondary action'),
-        onClassName: styles.onSplitSecondary,
-        offClassName: styles.offSplitSecondary,
-    },
-];
 
 const DemoCode = `import {Button} from'@/core';
 // Use primitive

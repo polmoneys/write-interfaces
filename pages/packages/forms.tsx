@@ -69,9 +69,9 @@ export default function Forms() {
     const handleSubmit = () => {
         if (isValid) {
             const values = getValues();
-            console.log(values, 'SUBMIT');
+            console.log(values, 'Form is valid');
         } else {
-            console.log('CAN NOT SUBMIT');
+            console.warn('Form not valid');
         }
     };
 
