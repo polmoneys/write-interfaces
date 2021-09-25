@@ -23,6 +23,11 @@ a.button {
 .flexCenter {
     align-items: center;
 }
+
+.flexEvenly {
+    justify-content: space-evenly !important;
+}
+
 .buttonGhost {
     background-color: transparent;
     outline: var(--component-border-width) solid transparent !important;

@@ -5,18 +5,14 @@
  *
  */
 
-import { useState, useEffect } from 'react';
 import { FocusScope, useFocusManager } from '@react-aria/focus';
 import { DefaultProps } from '@/core/types';
 import { clxs } from '@/utils/className';
 import { is } from '@/utils/is';
-import { RenderProp } from '../types';
 import Button, { Props as ButtonProps } from '../Button/Button';
 import styles from './ButtonGroup.module.css';
 
-interface Props extends Omit<DefaultProps, 'children'> {
-    /** Render props */
-    children: RenderProp<{ active: number | undefined; setActive: (number: number) => void }>;
+interface Props extends Pick<DefaultProps, 'children' | 'className'> {
     /** Defaults to horizontal */
     direction?: 'horizontal' | 'vertical';
     /** Selected button, can be 'unselected' initially */
@@ -24,24 +20,12 @@ interface Props extends Omit<DefaultProps, 'children'> {
 }
 
 function ButtonGroup(props: Props) {
-    const { initial, className, direction = 'horizontal', children } = props;
-    const [active, setActive] = useState(initial);
-
-    useEffect(() => {
-        setActive(initial);
-    }, [initial]);
-
+    const { children, direction, className } = props;
     const isVertical = is(direction, 'vertical');
     const rootStyles = clxs(styles.buttonGroup, className, isVertical && styles.buttonGroupVertical);
     return (
         <div className={rootStyles}>
-            <FocusScope>
-                {children &&
-                    children({
-                        active,
-                        setActive,
-                    })}
-            </FocusScope>
+            <FocusScope>{children}</FocusScope>
         </div>
     );
 }
