@@ -19,7 +19,7 @@ export default function Selectable() {
     const [selection, { matchSelection, updateSelection }] = useSelectable(listItems, 1, true, true);
 
     const handleChange = (index: number) => {
-        updateSelection({ index });
+        updateSelection(index);
     };
 
     return (
