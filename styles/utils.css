@@ -39,6 +39,29 @@ FILE CONTENTS
     contain-instrinsic-size: 1px var(--defered-height);
 }
 
+.container-article {
+    --lobotomized-owl-article: 1rem;
+}
+
+@media (orientation: landscape) {
+    .container-article {
+        --lobotomized-owl-article: 1rem;
+    }
+}
+
+.container-article > * {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.container-article > * + * {
+    margin-top: var(--lobotomized-owl-article);
+}
+.container-article > * + :is(h2, h3, h4, img, blockquote),
+.container-article > :is(img, blockquote) + * {
+    margin-top: calc(var(--lobotomized-owl-article) * 2);
+}
+
 .flex {
     /* make a row, defaults as .main-start.cross-baseline */
     display: flex;
