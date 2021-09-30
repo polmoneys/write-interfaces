@@ -6,7 +6,7 @@
  *
  */
 
-import { ElementType } from 'react';
+import { ElementType, useMemo } from 'react';
 import { DefaultProps, CSSProps } from '../types';
 import { clxs } from '@/utils/className';
 import styles from './Grid.module.css';
@@ -36,7 +36,10 @@ interface Props extends DefaultProps {
 
 const Grid = (props: Props): JSX.Element => {
     const { as, className, children, gap, discouragedStyle, size, stretch = false, masonry = false } = props;
-    const gridConfig: CSSProps = { '--grid-max-width': size ?? '400px', '--grid-gap': gap ?? '2rem max(5vw, 2rem)' };
+
+    const gridConfig: CSSProps = useMemo(() => {
+        return { '--grid-max-width': size ?? '400px', '--grid-gap': gap ?? '2rem max(5vw, 2rem)' };
+    }, [size, gap]);
 
     const rootStyles = clxs(styles.root, className, stretch && styles.stretch, masonry && styles.masonry);
     const Tag = as || ('div' as ElementType);

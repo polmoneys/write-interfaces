@@ -6,7 +6,7 @@
  *
  */
 
-import { ElementType } from 'react';
+import { ElementType, useMemo } from 'react';
 import isNil from 'lodash.isnil';
 import { DefaultProps, ActionItem } from '../types';
 import Button from '@/packages/Button/Button';
@@ -61,12 +61,14 @@ const Slots = (props: Props) => {
     const rootStyles = clxs(styles.root, className);
     const Tag = as || ('div' as ElementType);
 
-    const gridStyles = {
-        gridTemplateColumns: `repeat(${x}, minmax(0, 1fr))`,
-        gridTemplateRows: `repeat(${y}, minmax(0, ${minY}))`,
-        gridGap: gap,
-        border: debug ? '1px solid var(--error-200)' : 'none',
-    };
+    const gridStyles = useMemo(() => {
+        return {
+            gridTemplateColumns: `repeat(${x}, minmax(0, 1fr))`,
+            gridTemplateRows: `repeat(${y}, minmax(0, ${minY}))`,
+            gridGap: gap,
+            border: debug ? '1px solid var(--error-200)' : 'none',
+        };
+    }, [gap, minY, debug]);
 
     const { isPortrait } = useBreakpoint();
 
