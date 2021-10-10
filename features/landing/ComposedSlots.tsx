@@ -42,8 +42,16 @@ const ComposedSlots = (props: Props) => {
             label: '',
             children: 'STAT',
             onTap: () => router.push('/packages/stat'),
-            x: [1, 9],
+            x: [1, 7],
             y: [3, 5],
+        },
+        {
+            id: '5',
+            label: '',
+            children: 'DATA GRID',
+            onTap: () => router.push('/features/data-grid'),
+            x: [9, 13],
+            y: [1, 4],
         },
     ];
     const slots: Array<SlotItemProps> = [
@@ -60,7 +68,7 @@ const ComposedSlots = (props: Props) => {
             label: '',
             children: 'SEARCH',
             onTap: () => router.push('/features/search'),
-            x: [8, 13],
+            x: [9, 13],
             y: [1, 5],
         },
         {
@@ -76,8 +84,16 @@ const ComposedSlots = (props: Props) => {
             label: '',
             children: 'STAT',
             onTap: () => router.push('/packages/stat'),
-            x: [5, 8],
-            y: [1, 5],
+            x: [6, 7],
+            y: [1, 2],
+        },
+        {
+            id: '5',
+            label: '',
+            children: 'DATA GRID',
+            onTap: () => router.push('/features/data-grid'),
+            x: [2, 7],
+            y: [3, 4],
         },
     ];
 

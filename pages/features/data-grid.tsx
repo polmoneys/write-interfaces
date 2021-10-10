@@ -1,25 +1,32 @@
-import { ChangeEvent, useState, useEffect } from 'react';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
 import isString from 'lodash.isstring';
-import isEmpty from 'lodash.isempty';
-import { ColToRow, Row, Spacer } from '@/core';
-import { DefaultProps, EventCbProps } from '@/core/types';
-import { HelveticaNeue, SpacerSection, Page, Title } from '@/composed';
-import { Button, Tag } from '@/packages';
-import { formatDate } from '@/utils/date';
-import { is } from '@/utils/is';
-import Code from '@/features/tutorial/Code';
+import { Row, Spacer } from '@/core';
+import { SpacerSection, Page, Title } from '@/composed';
+import { Tag } from '@/packages';
+import { useBreakpoint } from '@/hooks';
 import useDataGrid from '@/hooks/UseDataGrid/UseDataGrid';
+// import Code from '@/features/tutorial/Code';
+import { is } from '@/utils/is';
 import { DataGridColumns } from '@/packages/DataGrid/types';
 
 export default function Advanced() {
+    const { isPortrait } = useBreakpoint();
+
     const dataGridLabel = 'data-grid-title';
     const [
         { component, results, resultsQuery, resultsFilters, resultsSorters, resultsSelectedRows },
         { onFilter, onSort, onQuery, onSearch, onReset, onPageChange },
     ] = useDataGrid({
         rows: listItems,
-        columns: listColumns,
+        columns: isPortrait
+            ? listColumns
+                  .filter((col) => col.value === 'flag' || col.value === 'title' || col.value === 'rating')
+                  .map((col) => {
+                      if (is(col.value, 'title')) {
+                          return { ...col, width: '180px' };
+                      }
+                      return col;
+                  })
+            : listColumns,
         searchScope: ['title'],
         id: 'data-grid-x',
         label: dataGridLabel,
@@ -167,14 +174,14 @@ const listItems: Array<Record<string, unknown>> = [
     },
 ];
 
-const DemoCode = `// Feature is made of composed components, a <Field/>
-<SearchBar/>
+// const DemoCode = `// Feature is made of composed components, a <Field/>
+// <SearchBar/>
 
-// Feature is made of composed components, a <Disclosure/>, <Radio/> and <Button/>
-<Sorters/>
+// // Feature is made of composed components, a <Disclosure/>, <Radio/> and <Button/>
+// <Sorters/>
 
-// Feature is made of composed components, a <DropDown/> 
-<Filters/>
+// // Feature is made of composed components, a <DropDown/>
+// <Filters/>
 
-// Show results 
-<List/>`;
+// // Show results
+// <List/>`;
