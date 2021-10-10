@@ -323,7 +323,7 @@ function DataGrid(props: Props) {
                             let ariaSortProps;
                             if (is(property, col.value)) {
                                 ariaSortProps = {
-                                    ariaSort: !isDescending ? 'ascending' : 'descending',
+                                    'aria-sort': !isDescending ? 'ascending' : 'descending',
                                 };
                             }
                             return (
@@ -331,7 +331,6 @@ function DataGrid(props: Props) {
                                     key={col.value as string}
                                     role="columnheader"
                                     {...ariaSortProps}
-                                    aria-sort="none"
                                     className={styles.cell}
                                     style={{
                                         width: col.width,
