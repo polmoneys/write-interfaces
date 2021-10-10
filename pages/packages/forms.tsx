@@ -56,7 +56,7 @@ export default function Forms() {
                 <Row className={`main-margin cross-center`}>
                     <div>
                         <CheckBox onChange={onTosChange} checked={accepted} required name="tos" value="Terms &amp; Conditions">
-                            Terms &amp; Conditions
+                            <span style={{ marginLeft: '1rem' }}> Terms &amp; Conditions</span>
                         </CheckBox>
                     </div>
                     <Button onTap={() => handleSubmit()}>Submit</Button>

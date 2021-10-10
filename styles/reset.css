@@ -131,7 +131,7 @@ a:focus {
 button.ring,
 a.ring {
     /* until :focus-visible has better browser support */
-    outline-offset: 4px;
+    outline-offset: 1px;
 }
 
 button::-moz-focus-inner {

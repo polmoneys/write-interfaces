@@ -166,7 +166,7 @@ export default function Content() {
                     <ButtonAccent className="stretch-width-recursive">Main Action</ButtonAccent>
                 </Card>
                 <Card>
-                    <Image layout="fill" objectFit="cover" src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" />
+                    <Image layout="fill" objectFit="cover" src="https://pbs.twimg.com/profile_images/1396773723609387008/4OIYafWJ_400x400.jpg" alt="" />
                     <Tag color="var(--white)" fill="var(--error-200)">
                         DATE AS YY/MM/DD{' '}
                     </Tag>

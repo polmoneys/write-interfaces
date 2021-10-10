@@ -61,6 +61,7 @@ export default function Dialogs() {
                 <Spacer />
             </AlertDialog>
             <Dialog
+                id="example-dialog"
                 closeButton={
                     <Button start={<Icon variant="close" />} variant="ghost">
                         Close
@@ -83,6 +84,7 @@ export default function Dialogs() {
                 <Spacer />
             </Dialog>
             <Dialog
+                id="example-dialog-2"
                 closeButton={
                     <Button start={<Icon variant="close" />} variant="ghost">
                         Close
