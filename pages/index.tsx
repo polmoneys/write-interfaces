@@ -73,13 +73,14 @@ export default function Home() {
                     <Link to="/packages/toolbar">Toolbar</Link>
                 </GridFlex>
                 <SpacerParagraph />
-                <HelveticaNeueBold> @/composed </HelveticaNeueBold>
+                <HelveticaNeueBold> @/composed &amp; features </HelveticaNeueBold>
                 <SpacerParagraph />
                 <GridFlex gap="1em" as="nav">
+                    <Link to="/features/search">Search</Link>
+                    <Link to="/features/data-grid">Data grid</Link>
                     <Link to="/packages/font">Font</Link>
                     <Link to="/packages/buttons">Buttons</Link>
                     <Link to="/packages/stat">Stats</Link>
-                    <Link to="/features/search">Search</Link>
                     <Link to="/features/delight">Delights</Link>
                 </GridFlex>
                 <SpacerParagraph />

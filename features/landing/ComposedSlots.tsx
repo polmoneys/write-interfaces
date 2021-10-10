@@ -109,7 +109,7 @@ const ComposedSlots = (props: Props) => {
                 }}
             >
                 <Row className="main-margin">
-                    <Tag>PROJECT SPECIFIC</Tag>
+                    <Tag>FEATURES</Tag>
                     <Tag fill="var(--error-000)" color="var(--error-200)">
                         COMPOSED
                     </Tag>
