@@ -67,8 +67,6 @@ export const paginate = (currentPage, lastPage, onClick) => {
     range.unshift(1);
     if (lastPage !== 1) range.push(lastPage);
     return range.map((i, index) => {
-        console.log(currentPage, i, '?');
-
         return !isNaN(i) ? (
             <Button variant="ghost" key={index} onTap={() => onClick(i)} className={is(currentPage, i) ? styles.buttonActive : styles.buttonInactive}>
                 {i}

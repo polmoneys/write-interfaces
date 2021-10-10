@@ -52,6 +52,7 @@ function AlertModal(props: Props) {
     const onClickConfirm = () => {
         chain(onConfirm(), onClose());
     };
+    const buttonRef = useRef(null);
 
     if (!isOpen) return null;
 
@@ -59,7 +60,6 @@ function AlertModal(props: Props) {
 
     const dialogRatio = isPortrait ? 'portrait' : 'landscape';
     const rootStyles = clxs(styles.root, className);
-    const buttonRef = useRef(null);
     return (
         <AlertDialogOverlay onDismiss={onClose} leastDestructiveRef={buttonRef} className={styles.overlay}>
             <AlertDialogContent className={rootStyles}>

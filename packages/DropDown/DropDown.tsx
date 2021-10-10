@@ -20,10 +20,12 @@ interface Props extends Pick<DefaultProps, 'children' | 'className'> {
     label: string | HTMLSpanElement | React.ReactNode;
     /** Defaults to false */
     portal?: boolean;
+    /** Icon */
+    icon?: 'chevron' | 'more';
 }
 
 const DropDown = (props: Props) => {
-    const { children, label = 'Expand', portal = false, orientation = 'vertical', className } = props;
+    const { children, label = 'Expand', portal = false, orientation = 'vertical', className, icon = 'chevron' } = props;
     const isHorizontal = is(orientation, 'horizontal');
     const rootStyles = clxs(styles.dropDown, className, isHorizontal && styles.dropDownHorizontal);
     return (
@@ -33,7 +35,7 @@ const DropDown = (props: Props) => {
                     <Fragment>
                         <MenuButton>
                             {label}
-                            <Icon variant={assignIcon(orientation, isExpanded)} />
+                            <Icon variant={assignIcon(orientation, isExpanded, icon)} />
                         </MenuButton>
                         <MenuPopover portal={portal}>
                             <MenuItems>{children}</MenuItems>
@@ -45,8 +47,11 @@ const DropDown = (props: Props) => {
     );
 };
 
-function assignIcon(direction: string, isExpanded: boolean): IconVariants {
+function assignIcon(direction: string, isExpanded: boolean, icon: 'chevron' | 'more'): IconVariants {
     let result: string;
+    if (is(icon, 'more')) {
+        return 'more' as IconVariants;
+    }
     if (is(direction, 'horizontal')) {
         if (isExpanded) {
             result = 'chevronLeft';

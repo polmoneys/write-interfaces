@@ -7,13 +7,12 @@
 
 import { cloneElement, ReactElement } from 'react';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
-import { useId } from '@reach/auto-id';
 import { DefaultProps } from '@/core/types';
 import { clxs } from '@/utils/className';
 import { is } from '@/utils/is';
 import styles from './Dialog.module.css';
 
-interface Props extends Pick<DefaultProps, 'id' | 'className' | 'children'> {
+interface Props extends Pick<DefaultProps, 'className' | 'children'> {
     /** 🚨 */
     isOpen: boolean;
     /** Callbacks */
@@ -23,10 +22,11 @@ interface Props extends Pick<DefaultProps, 'id' | 'className' | 'children'> {
     /** Aspect ratio of Dialog */
     ratio?: 'portrait' | 'landscape' | 'tray';
     /** todo: initialFocusRef */
+    id: string;
 }
 
 function Dialog(props: Props) {
-    const { children, className, closeButton, id = useId(), isOpen, onClose, ratio = 'landscape' } = props;
+    const { children, className, closeButton, id, isOpen, onClose, ratio = 'landscape' } = props;
     if (!isOpen) return null;
     const labelId = `label--${id}`;
     const isPortrait = is(ratio, 'portrait');

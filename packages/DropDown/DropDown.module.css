@@ -26,6 +26,9 @@
     border: var(--component-border-width) solid var(--component-border);
 }
 
+.dropDown [data-reach-menu-button]:focus {
+    outline: var(--component-border-width) solid var(--component-border) !important;
+}
 .dropDown [data-reach-menu-button] span {
     display: inline-flex;
 }
@@ -67,6 +70,10 @@
     outline: none;
     overflow: hidden;
 }
+.dropDown [data-reach-menu-item][data-selected] {
+    background-color: var(--error-000) !important;
+}
+
 .dropDown [data-reach-menu-item]:not(:last-of-type) {
     border-bottom: none;
 }
@@ -92,7 +99,7 @@
 .dropDown [data-reach-popover]:active,
 .dropDown [data-menu-items]:focus {
     outline: none !important;
-    outline: var(--tappable-focus-outline);
+    /* outline: var(--tappable-focus-outline); */
     box-shadow: var(--tappable-focus-shadow);
     border-radius: 0 !important;
 }

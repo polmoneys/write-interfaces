@@ -1,7 +1,6 @@
 .checkBoxField [data-reach-custom-checkbox-container] {
     display: inline-flex;
     position: relative;
-    margin-right: 1em;
     cursor: default;
     width: 2em;
     height: 2em;

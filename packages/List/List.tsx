@@ -104,6 +104,7 @@ List.Item = ({ children = 'List item', className, description, disabled = false,
     );
 };
 
+// eslint-disable-next-line react/display-name
 List.Divider = ({ children = 'List divider' }: ChildrenProp) => {
     const rootStyles = clxs(styles.listItem, styles.listDivider);
     const contentStyles = clxs(styles.content, styles.contentBody);

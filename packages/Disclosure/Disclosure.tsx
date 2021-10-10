@@ -7,23 +7,23 @@
 
 import { ReactNode } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@reach/disclosure';
-import { useId } from '@reach/auto-id';
 import { DefaultProps } from '@/core/types';
 import { clxs } from '@/utils/className';
 import Icon from '../Icon/Icon';
 import styles from './Disclosure.module.css';
 
-interface Props extends Pick<DefaultProps, 'children' | 'className' | 'id'> {
+interface Props extends Pick<DefaultProps, 'children' | 'className'> {
     /** 🚨 */
     isOpen?: boolean;
     /** Label or jsx for the expand button */
     label: string | HTMLSpanElement | ReactNode;
     /** Callbacks */
     onChange?: () => void;
+    id: string;
 }
 
 function Expandable(props: Props) {
-    const { children, id = useId(), className, label, isOpen, onChange } = props;
+    const { children, id, className, label, isOpen, onChange } = props;
     const rootStyles = clxs(styles.root, className);
     return (
         <Disclosure open={isOpen} id={id} onChange={onChange}>

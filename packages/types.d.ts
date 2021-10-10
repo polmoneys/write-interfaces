@@ -59,3 +59,5 @@ export type AnyRef = CallbackRef | MutableRefObject<HTMLElementOrNull>;
 export interface UnknownObject {
     [key: string]: unknown;
 }
+
+export type UnknownArray = Array<Record<string, unknown>>;
