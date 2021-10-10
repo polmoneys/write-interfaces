@@ -3,10 +3,10 @@ import isNil from 'lodash.isnil';
 
 /**
  *
- * Hook for picking from a list, allowing multiple selections.
- * Use it to control a group of Buttons or Radios (any list...)
+ * Hook for picking from a items, allowing multiple selections.
+ * Use it to control a group of Buttons or Radios (any items...)
  *
- * @param list
+ * @param items
  * @param initial
  * @param allowUnselected
  * @param allowMultiple
@@ -17,7 +17,7 @@ type Id = number;
 type IndicesArray = Array<Id>;
 
 function useSelectable<T>(
-    list: T[] = [],
+    items: T[] = [],
     initial: Id | null = null,
     allowUnselected = false,
     allowMultiple = false
@@ -26,6 +26,8 @@ function useSelectable<T>(
     {
         updateSelection: (id: Id) => void;
         matchSelection: (id: Id) => boolean;
+        resetSelection: () => void;
+        selectAll: () => void;
     }
 ] {
     const [selection, setSelection] = useState<IndicesArray>(() => (isNil(initial) ? [] : [initial]));
@@ -46,7 +48,8 @@ function useSelectable<T>(
                 }
             }
         },
-        [list, allowMultiple, selection]
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [items, allowMultiple, selection]
     );
 
     const matchSelection = useCallback(
@@ -56,7 +59,10 @@ function useSelectable<T>(
         [selection]
     );
 
-    return [selection, { matchSelection, updateSelection }];
+    const resetSelection = () => setSelection([]);
+    const selectAll = () => setSelection(items.map((item, pos) => pos));
+
+    return [selection, { matchSelection, updateSelection, resetSelection, selectAll }];
 }
 
 export default useSelectable;
