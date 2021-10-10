@@ -1,0 +1,116 @@
+.root {
+    position: relative;
+    width: 100%;
+}
+
+.header,
+.body,
+.root footer {
+    width: 100%;
+}
+
+.row {
+    width: 100%;
+    min-height: var(--tappable-height);
+    display: flex;
+    border: var(--component-border-width) solid var(--component-border);
+    border-bottom: 0;
+}
+
+/* header row */
+.row:only-of-type {
+    border-bottom: none;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    min-width: 0;
+    border-right: var(--component-border-width) solid var(--component-border);
+}
+
+.cell:last-of-type {
+    border-right: none !important;
+}
+
+.header .cell:first-of-type,
+.body .cell:first-of-type {
+    width: 80px;
+    flex-grow: 0 !important;
+}
+.body .cell {
+    padding: var(--tappable-padding-min);
+}
+
+.root footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--component-border-width) solid var(--component-border);
+    padding: var(--tappable-padding-min);
+}
+
+/*
+    Checkboxes
+*/
+
+.header .cell:first-of-type > div,
+.body .cell:first-of-type > div {
+    width: fit-content;
+}
+/*
+    Arrow Icon
+*/
+.headerDropDown [data-reach-menu-button] span svg {
+    display: none;
+}
+.headerDropDown:hover [data-reach-menu-button] span svg {
+    display: inline-flex;
+}
+
+/*
+    Dropdown Icon
+*/
+
+.headerDropDown [data-reach-menu-button] span + svg {
+    flex-shrink: 0;
+    margin-left: 0;
+    opacity: 0.4;
+}
+.headerDropDown:hover [data-reach-menu-button] span + svg {
+    opacity: 1;
+}
+.headerDropDown [data-reach-menu-button]:focus span + svg {
+    opacity: 1 !important;
+}
+
+.headerDropDown [data-reach-menu-button] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-transform: uppercase;
+}
+.headerDropDown [data-reach-menu-button] > p,
+.headerDropDown [data-reach-menu-button] > span {
+    font-size: 82%;
+}
+
+.headerDropDown [data-reach-menu] {
+    transform: translate(var(--component-border-width), var(--component-border-width));
+    max-width: calc(100% - var(--component-border-width) * 2);
+}
+
+/*
+    Alert search / filter
+*/
+
+.alert {
+    background-color: var(--component-bg);
+    z-index: var(--nav-z);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(var(--component-padding), calc(var(--tappable-height) * 1.2));
+}

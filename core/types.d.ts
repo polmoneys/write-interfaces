@@ -45,7 +45,7 @@ export interface DefaultProps {
 
 export interface EventCbProps {
     /** OnClick callback  */
-    onTap?: (event?: MouseEvent) => void;
+    onTap?: (event?: MouseEvent | MouseEventHandler<HTMLSpanElement>) => void;
     /** Start callback  */
     onStartHover?: () => void;
     /** End callback   */
@@ -70,5 +70,5 @@ export interface ActionItem extends Pick<DefaultProps, 'id' | 'children'>, Event
     label: string | HTMLSpanElement;
     to?: string;
 }
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 export interface ActionItems extends Array<ActionItem> {}
