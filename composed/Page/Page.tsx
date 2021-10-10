@@ -53,12 +53,13 @@ const Page = (props: Props) => {
                 <meta name="og:type" content="website" />
                 <meta name="twitter:title" content={pageTitle} />
                 <meta name="twitter:description" content={description} />
-                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:alt" content={pageTitle} />
                 <link rel="icon" href="/favicon.png" />
                 {/* 
                 <meta name="color-scheme" content="dark light" />
-                <meta name="twitter:image" content={pageImage} />
                 <meta name="og:image" content={pageImage} /> 
+                <meta name="twitter:image" content={pageImage} />
+                <meta name="twitter:card" content={pageImage ? "summary_large_image" : "summary"/>
                 */}
             </Head>
             {navigation && navigation}

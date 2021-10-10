@@ -31,7 +31,7 @@ export default function Filters<T>(props: SortFiltersProps<T>) {
 
     return (
         <div ref={ref} className={className}>
-            <Disclosure isOpen={open} onChange={() => setStatus((prev) => !prev)} label={label}>
+            <Disclosure id="search-filters-disclosure" isOpen={open} onChange={() => setStatus((prev) => !prev)} label={label}>
                 {Object.keys(active).map((key) => {
                     const getRadioButton = (isTruthyPicked: boolean): ReactNode => {
                         const id = isTruthyPicked ? `radio-defined-${key}` : `radio-not-defined-${key}`;
