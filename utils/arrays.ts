@@ -1,3 +1,5 @@
+// orderBy https://elijahmanor.com/byte/js-array-sort-nest
+
 /**
  * Utility to reshape an array by it's items Id.
  * Low-fi version of keyBy from "lodash.keyby" where you can do...
@@ -61,6 +63,13 @@ export const arrayIDfy = <T>(items: Array<T>) =>
         .sort((a, b) => {
             return (a['id'] < b['id'] ? -1 : 1) * 1;
         });
+
+/**
+ * Utility to compare two arrays for equality.
+ */
+
+export const arrayEquals = (a: Array<unknown>, b: Array<unknown>) =>
+    Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val, index) => val === b[index]);
 
 /**
  * Utility for rapid prototyping

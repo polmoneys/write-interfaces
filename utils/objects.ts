@@ -78,3 +78,13 @@ export const objectSplit = <T extends Dict, K extends keyof T>(object: T, keys: 
 
     return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>];
 };
+
+/**
+ * Utility to test for same keys in objects.
+ */
+
+export const objectsHaveSameKeys = (...objects: Array<UnknownObject>) => {
+    const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
+    const union = new Set(allKeys);
+    return objects.every((object) => union.size === Object.keys(object).length);
+};
