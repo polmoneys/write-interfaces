@@ -17,7 +17,9 @@ import { useClickOutside, useSelectable } from '@/hooks';
 import { Props } from './types';
 import { is } from '@/utils/is';
 import { clxs } from '@/utils/className';
+import DataGridCellSkeleton from './DataGridCellSkeleton';
 import styles from './DataGrid.module.css';
+import { rangify } from '@/utils/arrays';
 
 // Keyboard keys for dissmissing dialogs.
 const closeKeys = ['Escape', 'c'];
@@ -29,8 +31,8 @@ function DataGrid(props: Props) {
         className,
         rows,
         columns,
-        // TODO: loading skeleton
-        loading = false,
+        loading,
+        skeletonFill,
         activeSorter,
         activeQuery,
         onFilter,
@@ -174,6 +176,23 @@ function DataGrid(props: Props) {
 
     const { property, isDescending } = activeSorter;
 
+    const skeletonRows = useMemo(() => {
+        return loading ? (
+            rangify(6).map((pos) => (
+                <div className={styles.row} key={pos}>
+                    {rangify(6).map((pos) => (
+                        <div className={styles.cell} key={pos}>
+                            <DataGridCellSkeleton fill={skeletonFill} />
+                        </div>
+                    ))}
+                </div>
+            ))
+        ) : (
+            <Fragment />
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loading]);
+
     const rootStyles = clxs(styles.root, className);
 
     return (
@@ -288,6 +307,7 @@ function DataGrid(props: Props) {
                     </Alert>
                 )}
             </div>
+
             <div
                 id={id}
                 role="grid"
@@ -297,77 +317,82 @@ function DataGrid(props: Props) {
                 aria-colcount={columns.length}
                 aria-multiselectable="false"
             >
-                <div className={styles.header} role="rowgroup">
-                    <div className={styles.row} role="row">
-                        {columns?.map((col) => {
-                            if (is(col.value, 'flag')) {
+                {!loading && (
+                    <div className={styles.header} role="rowgroup">
+                        <div className={styles.row} role="row">
+                            {columns?.map((col) => {
+                                if (is(col.value, 'flag')) {
+                                    return (
+                                        <div
+                                            key={col.value as string}
+                                            id={col.value as string}
+                                            role="columnheader"
+                                            className={styles.cell}
+                                            style={{
+                                                width: '60px',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <CheckBox name="all-rows" value="all-rows" checked={parentIsChecked} onChange={onParentChange} />
+                                        </div>
+                                    );
+                                }
+
+                                /**
+                                 * instead of using aria-sort="none" remove the attribute instead.
+                                 * You should not use aria-sort on more than one column
+                                 * header at a time.
+                                 */
+                                let ariaSortProps;
+                                if (is(property, col.value)) {
+                                    ariaSortProps = {
+                                        'aria-sort': !isDescending ? 'ascending' : 'descending',
+                                    };
+                                }
                                 return (
                                     <div
                                         key={col.value as string}
-                                        id={col.value as string}
                                         role="columnheader"
+                                        {...ariaSortProps}
                                         className={styles.cell}
                                         style={{
-                                            width: '60px',
-                                            justifyContent: 'center',
+                                            width: col.width,
+                                            justifyContent: col.align,
                                         }}
                                     >
-                                        <CheckBox name="all-rows" value="all-rows" checked={parentIsChecked} onChange={onParentChange} />
+                                        <DropDown
+                                            icon="more"
+                                            label={
+                                                <HelveticaNeue as="span">
+                                                    {col.label}{' '}
+                                                    {is(property, col.value) && (
+                                                        <Icon variant={is(property, col.value) && isDescending ? 'down' : 'up'} transforms="scale(.7)" />
+                                                    )}
+                                                </HelveticaNeue>
+                                            }
+                                            className={styles.headerDropDown}
+                                        >
+                                            <DropDownItem onSelect={() => onSort({ isDescending: false, property: col.value })}>Asc</DropDownItem>
+                                            <DropDownItem onSelect={() => onSort({ isDescending: true, property: col.value })}>Desc</DropDownItem>
+                                            <DropDownItem onSelect={() => chain(setSearchDialogVisibility(true), ref.current.focus())}>Query</DropDownItem>
+                                            <DropDownItem onSelect={() => chain(setFiltersDialogVisibility(true), ref.current.focus())}>Filter</DropDownItem>
+                                            <DropDownItem onSelect={() => chain(setColumnsDialogVisibility(true), ref.current.focus())}>Layout</DropDownItem>
+                                        </DropDown>
                                     </div>
                                 );
-                            }
-
-                            /**
-                             * instead of using aria-sort="none" remove the attribute instead.
-                             * You should not use aria-sort on more than one column
-                             * header at a time.
-                             */
-                            let ariaSortProps;
-                            if (is(property, col.value)) {
-                                ariaSortProps = {
-                                    'aria-sort': !isDescending ? 'ascending' : 'descending',
-                                };
-                            }
-                            return (
-                                <div
-                                    key={col.value as string}
-                                    role="columnheader"
-                                    {...ariaSortProps}
-                                    className={styles.cell}
-                                    style={{
-                                        width: col.width,
-                                        justifyContent: col.align,
-                                    }}
-                                >
-                                    <DropDown
-                                        icon="more"
-                                        label={
-                                            <HelveticaNeue as="span">
-                                                {col.label}{' '}
-                                                {is(property, col.value) && (
-                                                    <Icon variant={is(property, col.value) && isDescending ? 'down' : 'up'} transforms="scale(.7)" />
-                                                )}
-                                            </HelveticaNeue>
-                                        }
-                                        className={styles.headerDropDown}
-                                    >
-                                        <DropDownItem onSelect={() => onSort({ isDescending: false, property: col.value })}>Asc</DropDownItem>
-                                        <DropDownItem onSelect={() => onSort({ isDescending: true, property: col.value })}>Desc</DropDownItem>
-                                        <DropDownItem onSelect={() => chain(setSearchDialogVisibility(true), ref.current.focus())}>Query</DropDownItem>
-                                        <DropDownItem onSelect={() => chain(setFiltersDialogVisibility(true), ref.current.focus())}>Filter</DropDownItem>
-                                        <DropDownItem onSelect={() => chain(setColumnsDialogVisibility(true), ref.current.focus())}>Layout</DropDownItem>
-                                    </DropDown>
-                                </div>
-                            );
-                        })}
+                            })}
+                        </div>
                     </div>
-                </div>
+                )}
                 <div
                     className={styles.body}
                     role="rowgroup"
                     // TODO: aria-expanded
                 >
-                    {rows?.length > 0 ? (
+                    {loading && skeletonRows}
+
+                    {!loading &&
+                        rows?.length > 0 &&
                         rows?.map((row, pos) => (
                             <div
                                 key={Number(row.id)}
@@ -415,8 +440,8 @@ function DataGrid(props: Props) {
                                         </div>
                                     ))}
                             </div>
-                        ))
-                    ) : (
+                        ))}
+                    {!loading && is(rows?.length, 0) && (
                         <div className={styles.row}>
                             <div className={styles.cell}>No results</div>
                         </div>
@@ -424,10 +449,19 @@ function DataGrid(props: Props) {
                 </div>
 
                 <footer className={styles.footer}>
-                    <HelveticaNeue>
-                        {columns.length}:{rows.length}
-                    </HelveticaNeue>
-                    <Button onTap={onReset}>Reset</Button>
+                    {loading ? (
+                        <Fragment>
+                            <DataGridCellSkeleton fill={skeletonFill} />
+                            <DataGridCellSkeleton fill={skeletonFill} />
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            <HelveticaNeue>
+                                {columns.length}:{rows.length}
+                            </HelveticaNeue>
+                            <Button onTap={onReset}>Reset</Button>
+                        </Fragment>
+                    )}
                 </footer>
             </div>
         </div>

@@ -16,6 +16,7 @@ export interface Props extends Pick<DefaultProps, 'className'> {
     onRowChange: (rows: UnknownArray) => void;
     activeSorter: SortState;
     activeQuery: string;
+    skeletonFill?: string;
 }
 
 export interface DataGridColumn extends Pick<DefaultProps, 'id'>, EventCbProps {

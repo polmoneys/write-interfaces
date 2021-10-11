@@ -30,18 +30,22 @@ const initialPager: Pager = {
 };
 
 interface Props {
+    id: string;
+    label: string;
     /** Headers */
     columns: DataGridColumns;
-    filters?: FilterState;
-    id: string;
-    initialQuery?: string;
-    label: string;
-    pager?: Pager;
     /** Content */
     rows: UnknownArray;
     /** default search scope, will be merged with users'*/
+    filters?: FilterState;
+    initialQuery?: string;
     searchScope: Array<string>;
     sorters?: SortState;
+    /** Async work */
+    pager?: Pager;
+    onPageChange?: (page: number) => void;
+    loading: boolean;
+    skeletonFill: string;
 }
 
 function useDataGrid(
@@ -59,7 +63,6 @@ function useDataGrid(
         onFilter: (filters: FilterState) => void;
         onSort: (sort: SortState) => void;
         onQuery: (query: string) => void;
-        onPageChange: (page: number) => void;
         onSearch: (params?: OnChangeParams) => void;
         onReset: () => void;
     }
@@ -74,6 +77,9 @@ function useDataGrid(
         initialQuery = initialQueryState,
         searchScope,
         pager = initialPager,
+        loading = false,
+        skeletonFill,
+        onPageChange,
     } = props;
 
     /**
@@ -143,11 +149,10 @@ function useDataGrid(
      * Async fetching and pagination.
      */
     const [activePager, setPage] = useState<Pager>(pager);
-    const onPageChange = (page: number) => setPage((previousPager) => ({ ...previousPager, page }));
 
     useEffect(() => {
-        // TODO: callaback to notify parent
-    }, [activePager.page]);
+        onPageChange?.(activePager.page);
+    }, [onPageChange, activePager.page]);
 
     /**
      * Rollback user selections.
@@ -166,7 +171,7 @@ function useDataGrid(
      */
     const component = (
         <DataGrid
-            loading={false}
+            loading={loading}
             id={id}
             label={label}
             columns={gridColumns}
@@ -180,6 +185,7 @@ function useDataGrid(
             onSort={onSort}
             onColChange={onColChange}
             onRowChange={onRowChange}
+            skeletonFill={skeletonFill}
         />
     );
     return [
@@ -197,7 +203,6 @@ function useDataGrid(
             onQuery,
             onSearch,
             onReset,
-            onPageChange,
         },
     ];
 }
