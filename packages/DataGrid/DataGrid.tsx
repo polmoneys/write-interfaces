@@ -134,20 +134,22 @@ function DataGrid(props: Props) {
 
     /**
      * Dialogs mgmt. Keyboard and click outside to ease closing them.
-     * "If one of your menu items causes the <Menu> itself to unmount,
-     * it is your job to move focus to the changed content."
+     * When <Dropdowns> itself to unmount  move focus to the changed content.
+     *
      */
     const [searchDialogVisibility, setSearchDialogVisibility] = useState(false);
     const [filtersDialogVisibility, setFiltersDialogVisibility] = useState(false);
     const [columnsDialogVisibility, setColumnsDialogVisibility] = useState(false);
-    const ref = useRef(null);
 
     const handleClickOutside = () => {
         setSearchDialogVisibility(false);
         setFiltersDialogVisibility(false);
         setColumnsDialogVisibility(false);
     };
+
+    const ref = useRef(null);
     useClickOutside(ref, handleClickOutside);
+
     const { keyboardProps } = useKeyboard({
         onKeyUp: (event) => {
             if (closeKeys.includes(event.key)) {
@@ -367,7 +369,12 @@ function DataGrid(props: Props) {
                 >
                     {rows?.length > 0 ? (
                         rows?.map((row, pos) => (
-                            <div key={Number(row.id)} className={styles.row} role="row" aria-rowindex={pos}>
+                            <div
+                                key={Number(row.id)}
+                                className={clxs(styles.row, matchSelectionCheckBoxes(pos) && styles.rowSelected)}
+                                role="row"
+                                aria-rowindex={pos}
+                            >
                                 <div
                                     className={styles.cell}
                                     role={'gridcell'}

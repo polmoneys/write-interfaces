@@ -43,6 +43,9 @@
 .body .cell {
     padding: var(--tappable-padding-min);
 }
+.body .row.rowSelected {
+    background-color: var(--component-bg);
+}
 
 .root footer {
     display: flex;

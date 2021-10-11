@@ -39,7 +39,7 @@ interface Props {
     pager?: Pager;
     /** Content */
     rows: UnknownArray;
-    /** default search scope, will be merged with user picked */
+    /** default search scope, will be merged with users'*/
     searchScope: Array<string>;
     sorters?: SortState;
 }
@@ -146,7 +146,7 @@ function useDataGrid(
     const onPageChange = (page: number) => setPage((previousPager) => ({ ...previousPager, page }));
 
     useEffect(() => {
-        // TODO: fetch or get next chunk if client
+        // TODO: callaback to notify parent
     }, [activePager.page]);
 
     /**
@@ -158,6 +158,7 @@ function useDataGrid(
         setQuery(initialQuery);
         setPage(initialPager);
         setRows([]);
+        setResults(rows);
     };
 
     /**
