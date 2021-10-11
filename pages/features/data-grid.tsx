@@ -42,7 +42,7 @@ export default function Advanced() {
         <Page title={'Composed: DataGrid'}>
             <SpacerSection />
             <Title id={dataGridLabel}>
-                A <b>data grid</b> table.
+                A <b>data grid</b> table-like.
             </Title>
             <SpacerSection />
 
