@@ -84,7 +84,7 @@ const ComposedSlots = (props: Props) => {
             label: '',
             children: 'STAT',
             onTap: () => router.push('/packages/stat'),
-            x: [6, 7],
+            x: [5, 8],
             y: [1, 2],
         },
         {
