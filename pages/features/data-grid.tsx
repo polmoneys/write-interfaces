@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import isString from 'lodash.isstring';
 import { Row, Spacer } from '@/core';
 import { SpacerSection, Page, Title } from '@/composed';
-import { Tag } from '@/packages';
+import { Tag, Timer } from '@/packages';
 import { useBreakpoint } from '@/hooks';
 import useDataGrid from '@/hooks/UseDataGrid/UseDataGrid';
 // import Code from '@/features/tutorial/Code';
@@ -11,11 +12,15 @@ import { DataGridColumns } from '@/packages/DataGrid/types';
 export default function Advanced() {
     const { isPortrait } = useBreakpoint();
 
+    const [fakeLoad, setLoading] = useState(true);
+    new Timer(() => setLoading(false), 500);
+
     const dataGridLabel = 'data-grid-title';
     const [
         { component, results, resultsQuery, resultsFilters, resultsSorters, resultsSelectedRows },
-        { onFilter, onSort, onQuery, onSearch, onReset, onPageChange },
+        { onFilter, onSort, onQuery, onSearch, onReset },
     ] = useDataGrid({
+        loading: fakeLoad,
         rows: listItems,
         columns: isPortrait
             ? listColumns
@@ -30,6 +35,7 @@ export default function Advanced() {
         searchScope: ['title'],
         id: 'data-grid-x',
         label: dataGridLabel,
+        skeletonFill: 'var(--accent-200)',
     });
 
     return (
