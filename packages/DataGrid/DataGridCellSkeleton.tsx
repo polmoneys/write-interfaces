@@ -1,12 +1,12 @@
 import Skeleton from '../Skeleton/Skeleton';
 
 interface Props {
-    lines?: number;
     fill: string;
+    small?: boolean;
 }
 function DatGridCellSkeleton(props: Props) {
     return (
-        <div style={{ width: '100%', maxWidth: '210px' }} aria-hidden="true">
+        <div style={{ width: '100%', maxWidth: props.small ? '50px' : '190px' }} aria-hidden="true">
             <Skeleton {...props} />
         </div>
     );

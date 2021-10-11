@@ -117,3 +117,19 @@
     left: 0;
     transform: translate(var(--component-padding), calc(var(--tappable-height) * 1.2));
 }
+
+/*
+    Editable cell
+*/
+
+.editable {
+    background-color: transparent;
+    border: var(--component-border-width) solid var(--component-border);
+    padding: var(--tappable-padding-min);
+    border-radius: 0.2em;
+}
+
+.editable:hover {
+    background-color: #161822;
+    cursor: pointer;
+}

@@ -7,7 +7,7 @@
  *
  */
 
-import { useState, useMemo, cloneElement, useRef, useCallback, Fragment, ChangeEvent, useEffect } from 'react';
+import { useState, useMemo, useRef, Fragment, ChangeEvent, useEffect } from 'react';
 import { chain } from '@react-aria/utils';
 import { useKeyboard } from '@react-aria/interactions';
 import { GridFlex, Spacer } from '@/core';
@@ -17,7 +17,16 @@ import { useClickOutside, useSelectable } from '@/hooks';
 import { Props } from './types';
 import { is } from '@/utils/is';
 import { clxs } from '@/utils/className';
+import DataGridContainer from './DataGridContainer';
+import DataGridCell from './DataGridCell';
 import DataGridCellSkeleton from './DataGridCellSkeleton';
+import DataGridDialog from './DataGridDialog';
+import DataGridHeader from './DataGridHeader';
+import DataGridBody from './DataGridBody';
+import DataGridBodyRow from './DataGridBodyRow';
+import DataGridHeaderRow from './DataGridHeaderRow';
+import DataGridHeaderRowGroup from './DataGridHeaderRowGroup';
+import DataGridFooter from './DataGridFooter';
 import styles from './DataGrid.module.css';
 import { rangify } from '@/utils/arrays';
 
@@ -181,8 +190,15 @@ function DataGrid(props: Props) {
             rangify(6).map((pos) => (
                 <div className={styles.row} key={pos}>
                     {rangify(6).map((pos) => (
-                        <div className={styles.cell} key={pos}>
-                            <DataGridCellSkeleton fill={skeletonFill} />
+                        <div
+                            className={styles.cell}
+                            key={pos}
+                            style={{
+                                minHeight: 'var(--tappable-height)',
+                                justifyContent: is(pos, 0) ? 'flex-start' : 'center',
+                            }}
+                        >
+                            <DataGridCellSkeleton fill={skeletonFill} small={is(pos, 0)} />
                         </div>
                     ))}
                 </div>
@@ -198,168 +214,120 @@ function DataGrid(props: Props) {
     return (
         <div className={rootStyles}>
             <div ref={ref} {...keyboardProps} tabIndex={0}>
-                {columnsDialogVisibility && (
-                    <Alert type="assertive" className={styles.alert}>
-                        <GridFlex gap="var(--component-margin)">
-                            <GridFlex gap="var(--component-margin)">
-                                {columns.map((col, pos) =>
-                                    is(pos, 0) ? (
-                                        <Tag key={col.value} fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
-                                            Visible columns
-                                        </Tag>
-                                    ) : (
-                                        <Tag
-                                            key={col.value}
-                                            fill="var(--error-000)"
-                                            color="var(--error-200)"
-                                            className={matchSelection(pos) ? 'fx-hue' : undefined}
-                                            onTap={() => updateSelection(pos)}
-                                        >
-                                            {col.label}
-                                        </Tag>
-                                    )
-                                )}
-                            </GridFlex>
-                        </GridFlex>
-                        <Spacer />
-                        <Button onTap={() => onColChange(selectedCols)}>Apply preferences</Button>
-                        <Button onTap={() => chain(onColChange([]), onReset)}>Reset</Button>
-                        <Button onTap={hideColumnsDialog}>Close</Button>
-                    </Alert>
-                )}
-                {filtersDialogVisibility && (
-                    <Alert type="assertive" className={styles.alert}>
-                        <GridFlex gap="var(--component-margin)">
-                            <Tag fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
-                                Filter:
-                            </Tag>
-                            {filterableKeys.current.map((filter, pos) => (
+                <DataGridDialog className={styles.alert} show={columnsDialogVisibility}>
+                    <GridFlex gap="var(--component-margin)">
+                        {columns.map((col, pos) =>
+                            is(pos, 0) ? (
+                                <Tag key={col.value} fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
+                                    Visible columns
+                                </Tag>
+                            ) : (
                                 <Tag
-                                    key={filter}
+                                    key={col.value}
                                     fill="var(--error-000)"
                                     color="var(--error-200)"
-                                    className={matchSelectionFilters(pos) ? 'fx-hue' : undefined}
-                                    onTap={() => updateSelectionFilters(pos)}
+                                    className={matchSelection(pos) ? 'fx-hue' : undefined}
+                                    onTap={() => updateSelection(pos)}
                                 >
-                                    {filter}
+                                    {col.label}
                                 </Tag>
-                            ))}
-                        </GridFlex>
-                        <Spacer />
-                        <Button onTap={() => onFilter(filters)}>Apply filters</Button>
-                        <Button onTap={onReset}>Reset</Button>
-                        <Button onTap={hideFiltersDialog}>Close</Button>
-                    </Alert>
-                )}
-                {searchDialogVisibility && (
-                    <Alert type="assertive" className={styles.alert}>
-                        {activeQuery?.trim().length > 0 && (
-                            <Tag fill="var(--error-000)" color="var(--error-200)">
-                                QUERY: {activeQuery}
-                            </Tag>
+                            )
                         )}
-                        <Spacer />
-
-                        <GridFlex gap="var(--component-margin)">
-                            {columns.map((col, pos) =>
-                                is(pos, 0) ? (
-                                    <Tag key={col.value} fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
-                                        Scope search:
-                                    </Tag>
-                                ) : (
-                                    <Tag
-                                        key={col.value}
-                                        fill="var(--error-000)"
-                                        color="var(--error-200)"
-                                        className={matchSelection(pos) ? 'fx-hue' : undefined}
-                                        onTap={() => updateSelection(pos)}
-                                    >
-                                        {col.label}
-                                    </Tag>
-                                )
-                            )}
-                        </GridFlex>
-                        <Spacer />
-
-                        <SearchBar
-                            value={activeQuery}
-                            autofocus
-                            label="Query results"
-                            name="data-grid-search"
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => onQuery(event.target.value)}
-                            end={
-                                <Button
-                                    variant="ghost"
-                                    onTap={() =>
-                                        onSearch({
-                                            searchQuery: activeQuery,
-                                            searchScopes: selectedCols,
-                                        })
-                                    }
+                    </GridFlex>
+                    <Spacer />
+                    <Button onTap={() => onColChange(selectedCols)}>Apply preferences</Button>
+                    <Button onTap={() => chain(onColChange([]), onReset)}>Reset</Button>
+                    <Button onTap={hideColumnsDialog}>Close</Button>
+                </DataGridDialog>
+                <DataGridDialog className={styles.alert} show={filtersDialogVisibility}>
+                    <GridFlex gap="var(--component-margin)">
+                        <Tag fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
+                            Filter:
+                        </Tag>
+                        {filterableKeys.current.map((filter, pos) => (
+                            <Tag
+                                key={filter}
+                                fill="var(--error-000)"
+                                color="var(--error-200)"
+                                className={matchSelectionFilters(pos) ? 'fx-hue' : undefined}
+                                onTap={() => updateSelectionFilters(pos)}
+                            >
+                                {filter}
+                            </Tag>
+                        ))}
+                    </GridFlex>
+                    <Spacer />
+                    <Button onTap={() => onFilter(filters)}>Apply filters</Button>
+                    <Button onTap={onReset}>Reset</Button>
+                    <Button onTap={hideFiltersDialog}>Close</Button>
+                </DataGridDialog>
+                <DataGridDialog className={styles.alert} show={searchDialogVisibility}>
+                    {activeQuery?.trim().length > 0 && (
+                        <Tag fill="var(--error-000)" color="var(--error-200)">
+                            QUERY: {activeQuery}
+                        </Tag>
+                    )}
+                    <Spacer />
+                    <GridFlex gap="var(--component-margin)">
+                        {columns.map((col, pos) =>
+                            is(pos, 0) ? (
+                                <Tag key={col.value} fill="var(--error-000)" color="var(--error-200)" className="fx-hue">
+                                    Scope search:
+                                </Tag>
+                            ) : (
+                                <Tag
+                                    key={col.value}
+                                    fill="var(--error-000)"
+                                    color="var(--error-200)"
+                                    className={matchSelection(pos) ? 'fx-hue' : undefined}
+                                    onTap={() => updateSelection(pos)}
                                 >
-                                    Search now
-                                </Button>
-                            }
-                        />
-                        <Spacer />
-                        <Button onTap={onReset}>Reset</Button>
-                        <Button onTap={hideSearchDialog}>Close</Button>
-                    </Alert>
-                )}
+                                    {col.label}
+                                </Tag>
+                            )
+                        )}
+                    </GridFlex>
+                    <Spacer />
+
+                    <SearchBar
+                        value={activeQuery}
+                        label="Query results"
+                        name="data-grid-search"
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => onQuery(event.target.value)}
+                        end={
+                            <Button
+                                variant="ghost"
+                                onTap={() =>
+                                    onSearch({
+                                        searchQuery: activeQuery,
+                                        searchScopes: selectedCols,
+                                    })
+                                }
+                            >
+                                Search now
+                            </Button>
+                        }
+                    />
+                    <Spacer />
+                    <Button onTap={onReset}>Reset</Button>
+                    <Button onTap={hideSearchDialog}>Close</Button>
+                </DataGridDialog>
             </div>
 
-            <div
-                id={id}
-                role="grid"
-                aria-describedby={label}
-                // TODO: aria-activedescendant="CELL_ID"
-                aria-rowcount={rows.length}
-                aria-colcount={columns.length}
-                aria-multiselectable="false"
-            >
+            <DataGridContainer id={id} label={label} rows={rows.length} cols={columns.length}>
                 {!loading && (
-                    <div className={styles.header} role="rowgroup">
-                        <div className={styles.row} role="row">
+                    <DataGridHeaderRowGroup>
+                        <DataGridHeaderRow>
                             {columns?.map((col) => {
                                 if (is(col.value, 'flag')) {
                                     return (
-                                        <div
-                                            key={col.value as string}
-                                            id={col.value as string}
-                                            role="columnheader"
-                                            className={styles.cell}
-                                            style={{
-                                                width: '60px',
-                                                justifyContent: 'center',
-                                            }}
-                                        >
+                                        <DataGridHeader key={col.value as string} id={col.value as string} width="60px" align="center">
                                             <CheckBox name="all-rows" value="all-rows" checked={parentIsChecked} onChange={onParentChange} />
-                                        </div>
+                                        </DataGridHeader>
                                     );
                                 }
-
-                                /**
-                                 * instead of using aria-sort="none" remove the attribute instead.
-                                 * You should not use aria-sort on more than one column
-                                 * header at a time.
-                                 */
-                                let ariaSortProps;
-                                if (is(property, col.value)) {
-                                    ariaSortProps = {
-                                        'aria-sort': !isDescending ? 'ascending' : 'descending',
-                                    };
-                                }
                                 return (
-                                    <div
-                                        key={col.value as string}
-                                        role="columnheader"
-                                        {...ariaSortProps}
-                                        className={styles.cell}
-                                        style={{
-                                            width: col.width,
-                                            justifyContent: col.align,
-                                        }}
-                                    >
+                                    <DataGridHeader key={col.value as string} {...col} activeSorter={activeSorter}>
                                         <DropDown
                                             icon="more"
                                             label={
@@ -378,81 +346,56 @@ function DataGrid(props: Props) {
                                             <DropDownItem onSelect={() => chain(setFiltersDialogVisibility(true), ref.current.focus())}>Filter</DropDownItem>
                                             <DropDownItem onSelect={() => chain(setColumnsDialogVisibility(true), ref.current.focus())}>Layout</DropDownItem>
                                         </DropDown>
-                                    </div>
+                                    </DataGridHeader>
                                 );
                             })}
-                        </div>
-                    </div>
+                        </DataGridHeaderRow>
+                    </DataGridHeaderRowGroup>
                 )}
-                <div
-                    className={styles.body}
-                    role="rowgroup"
-                    // TODO: aria-expanded
-                >
+                <DataGridBody>
                     {loading && skeletonRows}
 
                     {!loading &&
                         rows?.length > 0 &&
                         rows?.map((row, pos) => (
-                            <div
+                            <DataGridBodyRow
                                 key={Number(row.id)}
                                 className={clxs(styles.row, matchSelectionCheckBoxes(pos) && styles.rowSelected)}
-                                role="row"
-                                aria-rowindex={pos}
+                                position={pos}
                             >
-                                <div
-                                    className={styles.cell}
-                                    role={'gridcell'}
-                                    aria-colindex={pos}
-                                    aria-selected={false}
-                                    style={{
-                                        width: '60px',
-                                        justifyContent: 'center',
-                                    }}
-                                    // TODO: aria-labelledby="Row02 ColClaimed"
-                                    // TODO: contentEditable="true"
-                                    // TODO: aria-readonly=""
-                                >
+                                <DataGridCell position={pos} selected={false} role={'gridcell'} width="60px" align="center">
                                     <CheckBox
                                         name={row.id.toString() as string}
                                         value={row.id.toString() as string}
                                         checked={matchSelectionCheckBoxes(pos)}
                                         onChange={() => onChildChange(pos)}
                                     />
-                                </div>
+                                </DataGridCell>
                                 {columns
                                     .filter((col) => col.value !== 'flag')
                                     .map((col, pos) => (
-                                        <div
-                                            key={col.value}
-                                            className={styles.cell}
-                                            role={is(pos, 0) ? 'rowheader' : 'gridcell'}
-                                            aria-colindex={pos}
-                                            aria-selected={false}
-                                            style={{
-                                                width: col.width,
-                                                justifyContent: col.align,
-                                            }}
-                                        >
+                                        <DataGridCell key={col.value} {...col} role={is(pos, 0) ? 'rowheader' : 'gridcell'} position={pos} selected={false}>
                                             <HelveticaNeue>
                                                 {typeof row[col.value] === 'object' ? (row[col.value] as Date).toDateString() : row[col.value].toString()}
                                             </HelveticaNeue>
-                                        </div>
+                                        </DataGridCell>
                                     ))}
-                            </div>
+                            </DataGridBodyRow>
                         ))}
                     {!loading && is(rows?.length, 0) && (
                         <div className={styles.row}>
-                            <div className={styles.cell}>No results</div>
+                            <div className={styles.cell}>
+                                <HelveticaNeue>No results</HelveticaNeue>
+                            </div>
                         </div>
                     )}
-                </div>
+                </DataGridBody>
 
-                <footer className={styles.footer}>
+                <DataGridFooter>
                     {loading ? (
                         <Fragment>
-                            <DataGridCellSkeleton fill={skeletonFill} />
-                            <DataGridCellSkeleton fill={skeletonFill} />
+                            <DataGridCellSkeleton small fill={skeletonFill} />
+                            <DataGridCellSkeleton small fill={skeletonFill} />
                         </Fragment>
                     ) : (
                         <Fragment>
@@ -462,8 +405,8 @@ function DataGrid(props: Props) {
                             <Button onTap={onReset}>Reset</Button>
                         </Fragment>
                     )}
-                </footer>
-            </div>
+                </DataGridFooter>
+            </DataGridContainer>
         </div>
     );
 }
