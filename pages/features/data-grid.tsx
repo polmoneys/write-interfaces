@@ -1,43 +1,48 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import isNil from 'lodash.isnil';
 import isString from 'lodash.isstring';
 import { Row, Spacer } from '@/core';
-import { SpacerSection, Page, Title } from '@/composed';
-import { Tag, Timer } from '@/packages';
-import { useBreakpoint } from '@/hooks';
+import { SpacerSection, Page, Title, HelveticaNeue, SpacerParagraph } from '@/composed';
+import { Tag, Timer, Dialog, Button, Icon } from '@/packages';
+import { useBreakpoint, useOnOff } from '@/hooks';
 import useDataGrid from '@/hooks/UseDataGrid/UseDataGrid';
 // import Code from '@/features/tutorial/Code';
 import { is } from '@/utils/is';
 import { DataGridColumns } from '@/packages/DataGrid/types';
 
 export default function Advanced() {
-    const { isPortrait } = useBreakpoint();
+    // const { isPortrait } = useBreakpoint();
+
+    const { state: dialogOps, actions: dialogOpsActions } = useOnOff('off');
 
     const [fakeLoad, setLoading] = useState(true);
     new Timer(() => setLoading(false), 500);
 
     const dataGridLabel = 'data-grid-title';
-    const [
-        { component, results, resultsQuery, resultsFilters, resultsSorters, resultsSelectedRows },
-        { onFilter, onSort, onQuery, onSearch, onReset },
-    ] = useDataGrid({
+    const { component, resultsQuery, resultsFilters, resultsSorters, resultsSelectedRows, resultsNewCell } = useDataGrid({
         loading: fakeLoad,
+        skeletonFill: 'var(--accent-200)',
         rows: listItems,
-        columns: isPortrait
-            ? listColumns
-                  .filter((col) => col.value === 'flag' || col.value === 'title' || col.value === 'rating')
-                  .map((col) => {
-                      if (is(col.value, 'title')) {
-                          return { ...col, width: '180px' };
-                      }
-                      return col;
-                  })
-            : listColumns,
+        columns: listColumns,
+        // columns: isPortrait
+        //     ? listColumns
+        //           .filter((col) => col.value === 'select' || col.value === 'title' || col.value === 'rating')
+        //           .map((col) => {
+        //               if (is(col.value, 'title')) {
+        //                   return { ...col, width: '180px' };
+        //               }
+        //               return col;
+        //           })
+        //     : listColumns,
         searchScope: ['title'],
         id: 'data-grid-x',
         label: dataGridLabel,
-        skeletonFill: 'var(--accent-200)',
     });
 
+    useEffect(() => {
+        if (isNil(resultsNewCell)) return;
+        console.log('NEW CELL CONTENT', resultsNewCell);
+    }, [resultsNewCell]);
     return (
         <Page title={'Composed: DataGrid'}>
             <SpacerSection />
@@ -45,8 +50,20 @@ export default function Advanced() {
                 A <b>data grid</b> table-like.
             </Title>
             <SpacerSection />
-
+            <HelveticaNeue size={34} as="b" aria-hidden="true">
+                🙏🏽
+            </HelveticaNeue>
+            <SpacerParagraph />
+            <HelveticaNeue>
+                It's so cool I'll need to take a weekend off just to write proper docs and examples. <b>Come back soon.</b>{' '}
+            </HelveticaNeue>{' '}
+            <SpacerParagraph />
             <Row gap="var(--component-margin)">
+                {resultsQuery?.trim() !== '' && (
+                    <Tag fill="var(--error-000)" color="var(--error-200)">
+                        SEARCHING {resultsQuery}
+                    </Tag>
+                )}
                 <Tag>{resultsSorters?.isDescending ? 'Descending' : 'Ascending'}</Tag>
                 <Tag>{isString(resultsSorters?.property) && resultsSorters?.property}</Tag>
                 {resultsFilters.map((f, idx) => (
@@ -54,7 +71,14 @@ export default function Advanced() {
                         {f.property}
                     </Tag>
                 ))}
-                {resultsSelectedRows.length > 0 && <Tag className="fx-hue">Selected</Tag>}
+            </Row>
+            <Spacer />
+            <Row gap="var(--component-margin)">
+                {resultsSelectedRows.length > 0 && (
+                    <Tag className="fx-hue" onTap={() => dialogOpsActions.on()}>
+                        OPERATE ON SELECTION
+                    </Tag>
+                )}
                 {resultsSelectedRows.length < 3 ? (
                     resultsSelectedRows.map((f) => (
                         <Tag key={f.id.toString()} className="fx-hue">
@@ -67,17 +91,37 @@ export default function Advanced() {
             </Row>
             <SpacerSection />
             {component}
-
             {/* <SpacerSection />
             <Code children={DemoCode} /> */}
             <SpacerSection />
+            <Dialog
+                id="ops-on-selection"
+                closeButton={
+                    <Button start={<Icon variant="close" />} variant="ghost">
+                        Close
+                    </Button>
+                }
+                ratio="portrait"
+                onClose={() => dialogOpsActions.off()}
+                isOpen={is(dialogOps, 'on')}
+            >
+                <Spacer />
+                {resultsSelectedRows.map((f) => (
+                    <HelveticaNeue key={f.id.toString()}>ID {f.id}</HelveticaNeue>
+                ))}
+                <Spacer />
+
+                <HelveticaNeue> Batch export</HelveticaNeue>
+                <HelveticaNeue>Batch download if files</HelveticaNeue>
+                <Spacer />
+            </Dialog>
         </Page>
     );
 }
 
 const listColumns: DataGridColumns = [
     {
-        value: 'flag',
+        value: 'select',
         label: '',
         width: '60px',
         align: 'center',
@@ -85,7 +129,7 @@ const listColumns: DataGridColumns = [
     {
         value: 'id',
         label: 'id',
-        width: '60px',
+        width: '100px',
         align: 'flex-start',
     },
     {
@@ -106,6 +150,7 @@ const listColumns: DataGridColumns = [
         label: 'CREATED',
         width: '140px',
         align: 'flex-end',
+        formatter: (input: Date) => input.toDateString(),
     },
 
     {
@@ -125,6 +170,7 @@ const listColumns: DataGridColumns = [
         label: 'RATE',
         width: '100px',
         align: 'center',
+        variant: 'isEditable',
     },
 ];
 const listItems: Array<Record<string, unknown>> = [
