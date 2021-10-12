@@ -45,15 +45,16 @@ export interface Props extends FormElementProps, SlotsProps {
     className?: string;
     errorClassName?: string;
     onChange?: (value?: string | ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (value?: string | ChangeEvent<HTMLInputElement>) => void;
     onError?: () => void;
     onSuccess?: () => void;
     /** Initial value */
     value?: string | number;
     validation?: any;
     name: string;
-
     /** Defaults to text */
     type?: string;
+    isInline?: boolean;
     /** Adds css interactivity by leveraging  :placeholder-shown, needs placeholder */
     tip?: ReactNode;
     /** todo: fix */
@@ -80,12 +81,14 @@ const Field = forwardRef<HTMLInputElement, Props & BaseProps>((props: Props & Ba
         autofocus = false,
         required = true,
         type = 'text',
+        isInline = false,
         start,
         end,
         onError,
         onSuccess,
         validation,
         onChange,
+        onBlur,
     } = props;
 
     const [inputError, setError] = useState<{ input: string; message: string } | null>(null);
@@ -115,6 +118,26 @@ const Field = forwardRef<HTMLInputElement, Props & BaseProps>((props: Props & Ba
     };
     const inputStyles = clxs(styles.field, className, inputError && styles.error, inputError && errorClassName);
 
+    if (isInline) {
+        return (
+            <input
+                className={className}
+                defaultValue={value}
+                name={name}
+                autoComplete={autocomplete}
+                aria-required={!!required}
+                aria-label={required ? 'required' : 'optional'}
+                aria-describedby={`${name}-errors`}
+                autoFocus={autofocus}
+                enterKeyHint={enterkeyhint}
+                inputMode={inputmode}
+                type={type}
+                onChange={handleChange}
+                onBlur={onBlur}
+                {...(placeholder && { placeholder })}
+            />
+        );
+    }
     return (
         <div className={inputStyles}>
             <label htmlFor={name}>{label}</label>
