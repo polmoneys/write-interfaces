@@ -1,9 +1,22 @@
+/*
+
+FILE CONTENTS 
+-------------
+
+1) 'Globals'
+2) Light and Dark (commented) themes. 
+3) CSS custom properties to use
+
+*/
+
+/* 1) */
 body {
     background-color: var(--page-bg);
     color: var(--text-primary);
     /* scrollbar-color: var(--accent-200) Canvas; */
 }
 
+/* 2) */
 :root {
     color-scheme: light;
     accent-color: var(--accent-200);
@@ -39,6 +52,7 @@ body {
     }
 } */
 
+/* 3) */
 * {
     /* *-light  */
     --page-light: #fff;

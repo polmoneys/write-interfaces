@@ -1,4 +1,7 @@
-/* Some deps require non pure selectors so bad with ****.module.css */
+/*
+Some deps require non pure selectors so bad with ****.module.css 
+*/
+
 :root {
     --reach-tabs: 1;
     --reach-menu-button: 1;
