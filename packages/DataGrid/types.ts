@@ -1,5 +1,5 @@
 import { DefaultProps, EventCbProps } from '@/core/types';
-import { UnknownArray } from '@/packages/types';
+import { UnknownArray, UnknownObject } from '@/packages/types';
 
 export interface Props extends Pick<DefaultProps, 'className'> {
     rows: Array<Record<string, unknown>>;
@@ -14,6 +14,7 @@ export interface Props extends Pick<DefaultProps, 'className'> {
     onReset: () => void;
     onColChange: (cols: Array<string>) => void;
     onRowChange: (rows: UnknownArray) => void;
+    onCellChange: (newCell: UnknownObject | DataGridColumn) => void;
     activeSorter: SortState;
     activeQuery: string;
     skeletonFill?: string;
@@ -25,6 +26,8 @@ export interface DataGridColumn extends Pick<DefaultProps, 'id'>, EventCbProps {
     value: string;
     width: string;
     align: 'flex-start' | 'center' | 'flex-end';
+    variant?: 'default' | 'isEditable';
+    formatter?: (input: unknown) => string;
 }
 
 export interface DataGridColumns extends Array<DataGridColumn> {}

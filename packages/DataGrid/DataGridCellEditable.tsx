@@ -1,13 +1,18 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { Field } from '@/packages';
+import { UnknownObject } from '@/packages/types';
+import { DataGridColumn } from './types';
+
 import styles from './DataGrid.module.css';
 
 interface Props {
+    row: UnknownObject;
+    label: string;
     value: string | number;
-    setValue: (value: string | number) => void;
+    setValue: (row: UnknownObject) => void;
 }
-function DatGridCell(props: Props) {
-    const { value, setValue } = props;
+function DataGridCellEditable(props: Props) {
+    const { row, label, value, setValue } = props;
 
     const [editingValue, setEditingValue] = useState(value);
 
@@ -20,13 +25,15 @@ function DatGridCell(props: Props) {
     };
 
     const onBlur = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value.trim() === '') {
-            setValue(value);
-        } else {
-            setValue(event.target.value);
-        }
+        if (event.target.value.trim() === '') return;
+        setValue({
+            ...row,
+            [label]: event.target.value,
+        });
     };
-    return <Field className={styles.editable} aria-label="Field name" value={editingValue} onChange={onChange} onKeyDown={onKeyDown} onBlur={onBlur} />;
+    return (
+        <Field isInline className={styles.editable} label={label} name={label} value={editingValue} onChange={onChange} onKeyDown={onKeyDown} onBlur={onBlur} />
+    );
 }
 
-export default DatGridCell;
+export default DataGridCellEditable;

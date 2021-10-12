@@ -7,10 +7,11 @@
  *
  */
 
-import { useState, useEffect, useMemo, ReactNode, useRef, ReactElement } from 'react';
+import { useState, useEffect, useMemo, ReactNode } from 'react';
 import { matchSorter } from 'match-sorter';
+import isNil from 'lodash.isnil';
 import { Timer } from '@/packages';
-import { UnknownArray } from '@/packages/types';
+import { UnknownArray, UnknownObject } from '@/packages/types';
 import DataGrid from '@/packages/DataGrid/DataGrid';
 import { DataGridColumns, SortState, FilterState, OnChangeParams, Pager } from '@/packages/DataGrid/types';
 import { genericSort } from '@/utils/sort';
@@ -44,29 +45,22 @@ interface Props {
     /** Async work */
     pager?: Pager;
     onPageChange?: (page: number) => void;
+    onCellChange?: (cell: UnknownObject) => void;
     loading: boolean;
     skeletonFill: string;
 }
 
 function useDataGrid(
     props: Props
-): [
-    {
-        component: ReactNode;
-        results: UnknownArray;
-        resultsQuery: string;
-        resultsFilters: FilterState;
-        resultsSorters: SortState;
-        resultsSelectedRows: UnknownArray;
-    },
-    {
-        onFilter: (filters: FilterState) => void;
-        onSort: (sort: SortState) => void;
-        onQuery: (query: string) => void;
-        onSearch: (params?: OnChangeParams) => void;
-        onReset: () => void;
-    }
-] {
+): {
+    component: ReactNode;
+    results: UnknownArray;
+    resultsQuery: string;
+    resultsFilters: FilterState;
+    resultsSorters: SortState;
+    resultsSelectedRows: UnknownArray;
+    resultsNewCell: UnknownObject;
+} {
     const {
         id,
         label,
@@ -80,6 +74,7 @@ function useDataGrid(
         loading = false,
         skeletonFill,
         onPageChange,
+        onCellChange,
     } = props;
 
     /**
@@ -91,13 +86,25 @@ function useDataGrid(
     }, [searchResults]);
 
     /**
-     * User selection.
+     * Available user choices.
      */
     const [activeSorter, setActiveSorter] = useState<SortState>(sorters);
     const [activeFilters, setActiveFilters] = useState<FilterState>(filters);
     const [activeQuery, setQuery] = useState<string>(initialQuery);
     const [activeCols, setCols] = useState<Array<string>>([]);
     const [selectedRows, setRows] = useState<UnknownArray>([]);
+    const [newCellContent, setNewCell] = useState<UnknownObject | null>(null);
+
+    /**
+     * SideFx user selection.
+     */
+    useEffect(() => {
+        const results = rows
+            .filter((widget) => genericFilter<any>(widget, activeFilters))
+            .sort((widgetA, widgetB) => genericSort<any>(widgetA, widgetB, activeSorter));
+        setResults(results);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeSorter, activeFilters, rows]);
 
     const gridColumns = useMemo(() => {
         let picked = [columns[0]];
@@ -112,17 +119,15 @@ function useDataGrid(
 
         return columns;
     }, [columns, activeCols]);
-
     /**
-     * SideFx user selection.
+     * SideFx user edits a cell.
      */
     useEffect(() => {
-        const results = rows
-            .filter((widget) => genericFilter<any>(widget, activeFilters))
-            .sort((widgetA, widgetB) => genericSort<any>(widgetA, widgetB, activeSorter));
-        setResults(results);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeSorter, activeFilters, rows]);
+        if (isNil(newCellContent)) return;
+        onCellChange?.(newCellContent);
+        // Reset state
+        new Timer(() => setNewCell(null), 200);
+    }, [onCellChange, newCellContent]);
 
     /**
      * Methods.
@@ -133,6 +138,7 @@ function useDataGrid(
     const onQuery = (query: string) => setQuery(query);
     const onColChange = (cols: Array<string>) => setCols(cols);
     const onRowChange = (rows: UnknownArray) => setRows(rows);
+    const onChangeCell = (newCell: UnknownObject) => setNewCell(newCell);
 
     const onSearch = (params?: OnChangeParams) => {
         const { searchScopes, searchQuery } = params;
@@ -155,7 +161,7 @@ function useDataGrid(
     }, [onPageChange, activePager.page]);
 
     /**
-     * Rollback user selections.
+     * Rollback user choices.
      */
     const onReset = () => {
         setActiveFilters(initialFilterState);
@@ -185,26 +191,19 @@ function useDataGrid(
             onSort={onSort}
             onColChange={onColChange}
             onRowChange={onRowChange}
+            onCellChange={onChangeCell}
             skeletonFill={skeletonFill}
         />
     );
-    return [
-        {
-            component,
-            results: searchResults,
-            resultsQuery: activeQuery,
-            resultsFilters: activeFilters,
-            resultsSorters: activeSorter,
-            resultsSelectedRows: selectedRows,
-        },
-        {
-            onFilter,
-            onSort,
-            onQuery,
-            onSearch,
-            onReset,
-        },
-    ];
+    return {
+        component,
+        results: searchResults,
+        resultsQuery: activeQuery,
+        resultsFilters: activeFilters,
+        resultsSorters: activeSorter,
+        resultsSelectedRows: selectedRows,
+        resultsNewCell: newCellContent,
+    };
 }
 
 export default useDataGrid;

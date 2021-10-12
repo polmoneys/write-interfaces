@@ -22,6 +22,12 @@
     border-bottom: none;
 }
 
+/* No results Message */
+.row p:only-child {
+    padding-left: var(--tappable-padding-min);
+    line-height: var(--tappable-height);
+}
+
 .cell {
     display: flex;
     align-items: center;
@@ -31,6 +37,11 @@
     border-right: var(--component-border-width) solid var(--component-border);
 }
 
+.cell p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .cell:last-of-type {
     border-right: none !important;
 }
@@ -113,8 +124,8 @@
     background-color: var(--component-bg);
     z-index: var(--nav-z);
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0%;
+    left: 0%;
     transform: translate(var(--component-padding), calc(var(--tappable-height) * 1.2));
 }
 
@@ -124,12 +135,14 @@
 
 .editable {
     background-color: transparent;
-    border: var(--component-border-width) solid var(--component-border);
+    border-color: var(--transparent) !important;
     padding: var(--tappable-padding-min);
-    border-radius: 0.2em;
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
 }
 
 .editable:hover {
-    background-color: #161822;
+    border-color: var(--component-border) !important;
     cursor: pointer;
 }
