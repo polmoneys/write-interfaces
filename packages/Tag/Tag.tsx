@@ -45,8 +45,12 @@ const Tag = (props: Props) => {
                 ...(is(variant, 'traced') && {
                     border: `var(--component-border-width) solid ${color}`,
                 }),
+                ...(onTap && {
+                    cursor: 'pointer',
+                }),
             }}
             {...(onTap && { onClick: onTap })}
+            {...(onTap && { role: 'button' })}
         >
             {children}
         </span>
