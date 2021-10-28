@@ -3,8 +3,9 @@ import isNil from 'lodash.isnil';
 
 /**
  *
- * Hook for picking from a items, allowing multiple selections.
+ * Hook for picking from a bunch of items, allowing multiple selections.
  * Use it to control a group of Buttons or Radios (any items...)
+ * !! If you only provide 1 item you have a binary state manager.
  *
  * @param items
  * @param initial
