@@ -5,3 +5,7 @@
 export function clxs(...predicate: Array<unknown>) {
     return predicate.filter(Boolean).join(' ');
 }
+
+export function _clxs(predicate: Array<unknown>) {
+    return predicate.filter(Boolean).join(' ');
+}
