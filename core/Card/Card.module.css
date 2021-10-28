@@ -32,6 +32,9 @@
 
 /* Card state if event handlers are in use */
 
+.focusWithin {
+}
+
 .pressed {
 }
 

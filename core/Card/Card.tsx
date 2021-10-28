@@ -6,10 +6,11 @@
  *
  */
 
-import { forwardRef, ElementType } from 'react';
+import { useState, forwardRef, ElementType } from 'react';
 import isNil from 'lodash.isnil';
 import { usePress, useHover } from '@react-aria/interactions';
 import { DefaultProps, EventCbProps, CSSProps } from '../types';
+import { useFocusWithin } from '@react-aria/interactions';
 import { clxs } from '@/utils/className';
 import { is } from '@/utils/is';
 import styles from './Card.module.css';
@@ -75,6 +76,13 @@ const Card = forwardRef((props: Props, ref) => {
         onHoverEnd: (event) => (onEndHover ? onEndHover() : {}),
     });
 
+    const [isFocusWithin, setFocusWithin] = useState(false);
+
+    const { focusWithinProps } = useFocusWithin({
+        onBlurWithin: () => setFocusWithin(false),
+        onFocusWithinChange: (isFocusWithin) => setFocusWithin(isFocusWithin),
+    });
+
     let customStyles: CSSProps = {};
     if (!isNil(ratio)) {
         customStyles = { '--card-ratio': `${matchRatioToValue[ratio].start}/${matchRatioToValue[ratio].end}` };
@@ -89,6 +97,7 @@ const Card = forwardRef((props: Props, ref) => {
 
     const rootStyles = clxs(
         styles.root,
+        isFocusWithin && styles.focusWithin,
         !isNil(gradient) && is(gradient.position, 'start') && styles.top,
         !isNil(gradient) && is(gradient.position, 'end') && styles.bottom,
         isPressed && styles.pressed,
@@ -107,6 +116,7 @@ const Card = forwardRef((props: Props, ref) => {
             {...(onTap && { ...pressProps })}
             {...(onStartHover && { ...hoverProps })}
             aria-labelledby={ariaLabelledby}
+            {...focusWithinProps}
         >
             {children}
         </Tag>
